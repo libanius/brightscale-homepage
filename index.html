@@ -2,81 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BrightScale Group</title>
+  <title>BrightScale – A brighter home for you, scale your business as a pro.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="BrightScale connects homeowners to trusted pros for remodeling, handyman, cleaning and more – while helping professionals scale their businesses with qualified leads." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="BrightScale – A brighter home for you, scale your business as a pro." />
+  <meta property="og:description"
+        content="We connect homeowners to trusted local pros in Florida and help contractors grow with qualified leads." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.brightscalegroup.com/" />
+  <meta property="og:image" content="https://www.brightscalegroup.com/assets/brightscale-logo.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
   <style>
-    /* Reset básico */
-    body, html {
+    :root {
+      --bs-primary: #040640;   /* cor da logo */
+      --bs-accent: #fb9232;    /* acento laranja */
+      --bs-bg-light: #f5f6fa;
+      --bs-text: #1f2933;
+      --bs-border: #e2e8f0;
+      --bs-radius-lg: 18px;
+      --bs-radius-xl: 26px;
+      --bs-shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: "Montserrat", Arial, sans-serif;
-      background-color: #ffffff;
-      color: #1f2937;
     }
 
-    /* Wrapper geral */
-    .container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    /* Logo responsiva */
-    .logo {
-      width: 220px;
-      max-width: 80%;
-      height: auto;
-      margin-bottom: 25px;
-    }
-
-    /* Título */
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #040640; /* azul da BrightScale */
-      margin-bottom: 10px;
-    }
-
-    /* Subtítulo */
-    p {
-      font-size: 1.1rem;
-      font-weight: 400;
-      max-width: 420px;
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--bs-text);
+      background: white;
       line-height: 1.5;
-      color: #4b5563;
     }
 
-    /* Ajustes mobile */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-      .logo {
-        width: 160px;
-      }
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-  </style>
-</head>
 
-<body>
-  <div class="container">
-    <img src="./assets/brightscale-logo.png" alt="BrightScale Logo" class="logo" />
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-    <h1>Welcome to BrightScale Group</h1>
-    <p>Your site is now powered by GitHub + Cloudflare Pages. This page will be replaced soon with the new, fully designed BrightScale experience.</p>
-  </div>
-</body>
-</html>
+    /* Layout base */
+    .page {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -681,7 +663,6 @@
     <div class="container">
       <nav class="nav">
         <div class="nav-left">
-          <!-- Substitua o src abaixo pelo caminho real do seu logo -->
           <img src="assets/brightscale-logo.png" alt="BrightScale logo" style="height:64px; width:auto;">
         </div>
         <div class="nav-links">
@@ -868,7 +849,6 @@
             <h3>Start your project with BrightScale</h3>
             <p>Fill out a few details – we’ll match you with local pros interested in your job.</p>
 
-            <!-- IMPORTANTE: troque YOUR_ENDPOINT_HERE pela URL real da sua API -->
             <form id="project-form" action="YOUR_ENDPOINT_HERE" method="POST">
               <div class="form-group">
                 <label for="service_type">What type of work do you need?</label>
@@ -948,7 +928,6 @@
               </div>
               <div id="form-status" class="form-status"></div>
 
-              <!-- Campo opcional para rastrear a origem -->
               <input type="hidden" name="source" value="brightscale_public_website" />
             </form>
           </div>
@@ -996,13 +975,12 @@
             <p>BrightScale</p>
             <p>5851 Holmberg Rd, Unit 4124</p>
             <p>Parkland, FL 33067</p>
-            <!-- Se o ZIP correto for 33067, só altere aqui depois -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SEÇÕES LEGAIS SIMPLES EM UMA PÁGINA SÓ (pode virar outra página depois) -->
+    <!-- SEÇÕES LEGAIS -->
     <section id="legal" class="legal-section">
       <div class="container">
         <h2>Legal basics</h2>
@@ -1060,19 +1038,14 @@
 </div>
 
 <script>
-  // Atualiza ano automaticamente
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Lógica básica para envio via fetch (JSON).
-  // IMPORTANTE: isso só funcionará depois que você trocar YOUR_ENDPOINT_HERE
-  // por um endpoint real e configurar CORS no Supabase/Bolt.
   const form = document.getElementById("project-form");
   const statusEl = document.getElementById("form-status");
 
   form.addEventListener("submit", async function (event) {
     const endpoint = form.getAttribute("action");
 
-    // Se o usuário ainda não substituiu a URL, apenas mostra aviso
     if (!endpoint || endpoint === "YOUR_ENDPOINT_HERE") {
       event.preventDefault();
       statusEl.style.display = "block";
