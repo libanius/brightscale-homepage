@@ -2,63 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BrightScale – A brighter home for you, scale your business as a pro.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="BrightScale connects homeowners to trusted pros for remodeling, handyman, cleaning and more – while helping professionals scale their businesses with qualified leads." />
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="BrightScale – A brighter home for you, scale your business as a pro." />
-  <meta property="og:description"
-        content="We connect homeowners to trusted local pros in Florida and help contractors grow with qualified leads." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.brightscalegroup.com/" />
-  <meta property="og:image" content="https://www.brightscalegroup.com/assets/brightscale-logo.png" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrightScale Group</title>
 
   <style>
-    :root {
-      --bs-primary: #040640;   /* cor da logo */
-      --bs-accent: #fb9232;    /* acento laranja */
-      --bs-bg-light: #f5f6fa;
-      --bs-text: #1f2933;
-      --bs-border: #e2e8f0;
-      --bs-radius-lg: 18px;
-      --bs-radius-xl: 26px;
-      --bs-shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
-    }
-
-    * {
-      box-sizing: border-box;
+    /* Reset básico */
+    body, html {
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: "Montserrat", Arial, sans-serif;
+      background-color: #ffffff;
+      color: #1f2937;
     }
 
-    body {
-      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--bs-text);
-      background: white;
-      line-height: 1.5;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    /* Layout base */
-    .page {
+    /* Wrapper geral */
+    .container {
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Logo responsiva */
+    .logo {
+      width: 220px;
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 25px;
+    }
+
+    /* Título */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #040640; /* azul da BrightScale */
+      margin-bottom: 10px;
+    }
+
+    /* Subtítulo */
+    p {
+      font-size: 1.1rem;
+      font-weight: 400;
+      max-width: 420px;
+      line-height: 1.5;
+      color: #4b5563;
+    }
+
+    /* Ajustes mobile */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .logo {
+        width: 160px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="./assets/brightscale-logo.png" alt="BrightScale Logo" class="logo" />
+
+    <h1>Welcome to BrightScale Group</h1>
+    <p>Your site is now powered by GitHub + Cloudflare Pages. This page will be replaced soon with the new, fully designed BrightScale experience.</p>
+  </div>
+</body>
+</html>
       display: flex;
       flex-direction: column;
     }
