@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BrightScale – A brighter home for you, scale your business as a pro.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="BrightScale connects homeowners to trusted pros for remodeling, handyman, cleaning and more – while helping professionals scale their businesses with qualified leads." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="BrightScale – A brighter home for you, scale your business as a pro." />
+  <meta property="og:description"
+        content="We connect homeowners to trusted local pros in Florida and help contractors grow with qualified leads." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.brightscalegroup.com/" />
+  <meta property="og:image" content="https://www.brightscalegroup.com/assets/brightscale-logo.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+  <style>
+    :root {
+      --bs-primary: #040640;   /* cor da logo */
+      --bs-accent: #fb9232;    /* acento laranja */
+      --bs-bg-light: #f5f6fa;
+      --bs-text: #1f2933;
+      --bs-border: #e2e8f0;
+      --bs-radius-lg: 18px;
+      --bs-radius-xl: 26px;
+      --bs-shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--bs-text);
+      background: white;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout base */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+      gap: 1.5rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--bs-primary);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: #4b5563;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--bs-primary);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--bs-primary);
+      color: white;
+      box-shadow: 0 12px 25px rgba(4, 6, 64, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 32px rgba(4, 6, 64, 0.4);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--bs-primary);
+      border-color: rgba(15, 23, 42, 0.12);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--bs-primary);
+      background: rgba(4, 6, 64, 0.04);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 2.8rem 0 2rem;
+      background: radial-gradient(circle at top left, rgba(251, 146, 50, 0.16), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(4, 6, 64, 0.12), transparent 55%),
+                  #ffffff;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--bs-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--bs-primary);
+      letter-spacing: 0.01em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: #4b5563;
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .hero-highlights span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(4, 6, 64, 0.04);
+    }
+
+    .hero-highlights span b {
+      color: var(--bs-primary);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .hero-secondary-text {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: var(--bs-radius-xl);
+      box-shadow: var(--bs-shadow-soft);
+      padding: 1.5rem 1.5rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+    }
+
+    .hero-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--bs-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .chip {
+      padding: 0.35rem 0.7rem;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: #4b5563;
+      background: #f9fafb;
+    }
+
+    .hero-metric-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .metric strong {
+      font-size: 0.95rem;
+      color: var(--bs-primary);
+    }
+
+    /* Sections genéricas */
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--bs-accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--bs-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: #6b7280;
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    /* Como funciona (duas colunas) */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .how-card {
+      background: var(--bs-bg-light);
+      border-radius: var(--bs-radius-lg);
+      padding: 1.4rem 1.3rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .how-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--bs-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .how-steps {
+      margin-left: 1.1rem;
+      margin-top: 0.3rem;
+      font-size: 0.86rem;
+      color: #4b5563;
+    }
+
+    .how-steps li {
+      margin-bottom: 0.2rem;
+    }
+
+    /* Serviços estilo Thumbtack */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    .service-card {
+      border-radius: var(--bs-radius-lg);
+      border: 1px solid var(--bs-border);
+      padding: 0.9rem 0.9rem 0.8rem;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.86rem;
+      cursor: default;
+      transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--bs-accent);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+      transform: translateY(-2px);
+    }
+
+    .service-title {
+      font-weight: 600;
+      color: #111827;
+      font-size: 0.9rem;
+    }
+
+    .service-sub {
+      color: #6b7280;
+      font-size: 0.78rem;
+    }
+
+    /* CTA faixa */
+    .cta-band {
+      background: linear-gradient(135deg, var(--bs-primary), #020221);
+      border-radius: var(--bs-radius-xl);
+      padding: 1.5rem 1.5rem 1.3rem;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--bs-shadow-soft);
+    }
+
+    .cta-band h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .cta-band p {
+      font-size: 0.86rem;
+      opacity: 0.9;
+    }
+
+    /* Formulário estilo Thumbtack */
+    .form-section {
+      background: var(--bs-bg-light);
+    }
+
+    .form-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: flex-start;
+      margin-top: 1.5rem;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: var(--bs-radius-xl);
+      padding: 1.5rem 1.5rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+    }
+
+    .form-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--bs-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-card p {
+      font-size: 0.84rem;
+      color: #6b7280;
+      margin-bottom: 0.9rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      flex: 1 1 160px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    label {
+      font-weight: 500;
+      color: #374151;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      border-radius: 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      padding: 0.6rem 0.7rem;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      font-family: inherit;
+      background: #f9fafb;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--bs-accent);
+      box-shadow: 0 0 0 1px rgba(251, 146, 50, 0.25);
+      background: white;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .hint {
+      font-size: 0.72rem;
+      color: #9ca3af;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 0.7rem;
+      font-size: 0.75rem;
+      color: #6b7280;
+      flex-wrap: wrap;
+    }
+
+    .form-status {
+      font-size: 0.8rem;
+      color: #059669;
+      display: none;
+    }
+
+    .form-status.error {
+      color: #b91c1c;
+    }
+
+    .pros-card {
+      background: white;
+      border-radius: var(--bs-radius-xl);
+      padding: 1.4rem 1.4rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .pros-card h3 {
+      font-size: 1rem;
+      color: var(--bs-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .pros-card p {
+      font-size: 0.84rem;
+      color: #4b5563;
+      margin-bottom: 0.7rem;
+    }
+
+    .pros-list {
+      font-size: 0.8rem;
+      color: #4b5563;
+      margin-bottom: 0.7rem;
+    }
+
+    .pros-list li {
+      margin-left: 1.2rem;
+      margin-bottom: 0.15rem;
+    }
+
+    /* Footer & legais */
+    footer {
+      border-top: 1px solid var(--bs-border);
+      padding: 1.3rem 0 1.6rem;
+      background: #f9fafb;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #4b5563;
+    }
+
+    .footer-links a:hover {
+      color: var(--bs-primary);
+    }
+
+    .legal-section {
+      padding: 2rem 0;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .legal-section h2 {
+      font-size: 1rem;
+      color: var(--bs-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .legal-section h3 {
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.2rem;
+      color: #111827;
+    }
+
+    .legal-section p {
+      margin-bottom: 0.35rem;
+    }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .form-layout,
+      .how-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav {
+        padding: 0.8rem 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-card {
+        margin-top: 1rem;
+      }
+
+      .cta-band {
+        padding: 1.2rem 1.1rem;
+      }
+
+      .section {
+        padding: 2rem 0;
+      }
+
+      .form-card,
+      .pros-card {
+        padding: 1.2rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header / NAV -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <!-- Substitua o src abaixo pelo caminho real do seu logo -->
+          <img src="assets/brightscale-logo.png" alt="BrightScale logo" style="height:64px; width:auto;">
+        </div>
+        <div class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#services">Services</a>
+          <a href="#pros">For Pros</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-cta">
+          <a href="#lead-form" class="btn btn-outline">Get a free quote</a>
+          <a href="https://subcontractor-lead-a-vbrc.bolt.host/" class="btn btn-primary">Pro login</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-kicker">BrightScale Group</div>
+          <h1 class="hero-title">
+            A brighter home for you — and a smarter way for pros to grow.
+          </h1>
+          <p class="hero-subtitle">
+            BrightScale connects homeowners with trusted local professionals for handyman work, remodeling,
+            cleaning and more — while helping contractors scale with qualified, ready-to-buy leads.
+          </p>
+
+          <div class="hero-highlights">
+            <span><b>Homeowners:</b> describe your project once, get matched with pros.</span>
+            <span><b>Pros:</b> see the details first, then choose which leads to buy.</span>
+          </div>
+
+          <div class="hero-cta-row">
+            <a href="#lead-form" class="btn btn-primary">Tell us what you need</a>
+            <a href="#pros" class="btn btn-outline">I’m a pro – grow my business</a>
+          </div>
+
+          <p class="hero-secondary-text" style="margin-top:0.6rem;">
+            Serving South Florida – starting in Parkland, Boca Raton and surrounding areas.
+          </p>
+        </div>
+
+        <aside class="hero-card">
+          <h2 class="hero-card-title">What do you need help with?</h2>
+          <p class="hero-card-sub">Popular requests on BrightScale right now:</p>
+          <div class="chips">
+            <div class="chip">Handyman & small repairs</div>
+            <div class="chip">Bathroom remodeling</div>
+            <div class="chip">Interior & exterior painting</div>
+            <div class="chip">Flooring & tile</div>
+            <div class="chip">Pool cleaning & maintenance</div>
+          </div>
+          <div class="hero-metric-row">
+            <div class="metric">
+              <strong>Fast response</strong>
+              <span>Requests sent to pros in minutes.</span>
+            </div>
+            <div class="metric">
+              <strong>Pros you can see</strong>
+              <span>Transparent info before you decide.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">How it works</div>
+          <h2 class="section-title">One platform, two journeys — homeowners and pros.</h2>
+          <p class="section-subtitle">
+            BrightScale was designed to make projects easier for homeowners and more predictable for pros.
+          </p>
+        </div>
+
+        <div class="how-grid">
+          <div class="how-card">
+            <h3 class="how-title">For homeowners</h3>
+            <ul class="how-steps">
+              <li>1. Tell us about your project – type of work, location, budget and timing.</li>
+              <li>2. We match your request with vetted local pros interested in your job.</li>
+              <li>3. Compare options, talk to pros and choose who you want to work with.</li>
+            </ul>
+          </div>
+          <div class="how-card">
+            <h3 class="how-title">For pros & contractors</h3>
+            <ul class="how-steps">
+              <li>1. Create your free BrightScale profile and select the services you offer.</li>
+              <li>2. See qualified leads with real project details in your dashboard.</li>
+              <li>3. Choose which leads to buy, contact the client and win more work.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Popular services</div>
+          <h2 class="section-title">Inspired by what people actually request every day.</h2>
+          <p class="section-subtitle">
+            Similar ao estilo do Thumbtack: categorias claras, linguagem simples e foco no que o cliente busca.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-title">Handyman & small repairs</div>
+            <div class="service-sub">Doors, drywall, shelves, TV mounting, fixtures and more.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-title">Bathroom remodeling</div>
+            <div class="service-sub">Showers, tile, vanities, lighting, plumbing adjustments.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-title">Kitchen updates</div>
+            <div class="service-sub">Backsplash, cabinets, countertops, hardware and painting.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-title">Interior & exterior painting</div>
+            <div class="service-sub">Walls, ceilings, trims, doors, fences and decks.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-title">Flooring & tile</div>
+            <div class="service-sub">Vinyl plank, laminate, tile installation and repairs.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-title">Drywall & texture</div>
+            <div class="service-sub">Patches, repairs, skim coat and texture matching.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-title">Exterior cleaning</div>
+            <div class="service-sub">Driveways, patios, pool decks and house washing.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-title">Pool care & maintenance</div>
+            <div class="service-sub">Cleaning, chemicals, basic equipment checks.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section>
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>Ready to brighten your home or scale your business?</h2>
+            <p>Tell us about your project or join as a pro – BrightScale makes both journeys easier.</p>
+          </div>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="#lead-form" class="btn btn-primary" style="background:var(--bs-accent); box-shadow:none;">
+              Get started as a homeowner
+            </a>
+            <a href="#pros" class="btn btn-outline" style="background:white;">
+              I’m a pro – see how it works
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM + PROS -->
+    <section id="lead-form" class="form-section">
+      <div class="container">
+        <div class="section-header" style="margin-bottom:1.2rem;">
+          <div class="section-kicker">Request a quote</div>
+          <h2 class="section-title">Tell us what you need done.</h2>
+          <p class="section-subtitle">
+            Inspirado no fluxo do Thumbtack: poucas perguntas, mas suficientes para qualificar o lead e ajudar o pro.
+          </p>
+        </div>
+
+        <div class="form-layout">
+          <!-- FORM HOMEOWNERS -->
+          <div class="form-card">
+            <h3>Start your project with BrightScale</h3>
+            <p>Fill out a few details – we’ll match you with local pros interested in your job.</p>
+
+            <!-- IMPORTANTE: troque YOUR_ENDPOINT_HERE pela URL real da sua API -->
+            <form id="project-form" action="YOUR_ENDPOINT_HERE" method="POST">
+              <div class="form-group">
+                <label for="service_type">What type of work do you need?</label>
+                <select id="service_type" name="service_type" required>
+                  <option value="">Select a service</option>
+                  <option>Handyman & small repairs</option>
+                  <option>Bathroom remodeling</option>
+                  <option>Kitchen updates</option>
+                  <option>Interior painting</option>
+                  <option>Exterior painting</option>
+                  <option>Flooring & tile</option>
+                  <option>Drywall & texture</option>
+                  <option>Exterior cleaning</option>
+                  <option>Pool care</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="zip">ZIP code</label>
+                  <input type="text" id="zip" name="zip" placeholder="e.g. 33428" required />
+                  <div class="hint">We currently focus on South Florida.</div>
+                </div>
+                <div class="form-group">
+                  <label for="timing">When do you need this done?</label>
+                  <select id="timing" name="timing" required>
+                    <option value="">Choose an option</option>
+                    <option>As soon as possible</option>
+                    <option>Within 1–2 weeks</option>
+                    <option>Within a month</option>
+                    <option>Just planning / not sure yet</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="details">Describe your project</label>
+                <textarea id="details" name="details"
+                          placeholder="Example: Need to fix two drywall holes, repaint a bedroom and install a TV mount."
+                          required></textarea>
+                <div class="hint">The more detail you share, the better the match.</div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Your name</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone (best number to reach you)</label>
+                  <input type="tel" id="phone" name="phone" required />
+                </div>
+                <div class="form-group">
+                  <label for="preferred_contact">Preferred contact method</label>
+                  <select id="preferred_contact" name="preferred_contact" required>
+                    <option value="">Select</option>
+                    <option>Phone call</option>
+                    <option>Text message</option>
+                    <option>Email</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-primary">Submit my request</button>
+                <p class="hint">
+                  By submitting, you agree to be contacted about your project by BrightScale and selected pros.
+                </p>
+              </div>
+              <div id="form-status" class="form-status"></div>
+
+              <!-- Campo opcional para rastrear a origem -->
+              <input type="hidden" name="source" value="brightscale_public_website" />
+            </form>
+          </div>
+
+          <!-- PROS CARD -->
+          <aside id="pros" class="pros-card">
+            <h3>For pros & contractors</h3>
+            <p>
+              BrightScale was created to respect both sides: homeowners and professionals.
+              You see real project details before deciding which leads to buy.
+            </p>
+            <ul class="pros-list">
+              <li>Choose your service categories and areas you serve.</li>
+              <li>See requests with scope, ZIP and timing before spending credits.</li>
+              <li>Buy only the leads that fit your business model.</li>
+              <li>Track conversations and jobs in one place.</li>
+            </ul>
+            <p class="hint" style="margin-bottom:0.9rem;">
+              Coming soon: smart estimates, voice follow-up agents and more ways to scale your business.
+            </p>
+            <a href="https://subcontractor-lead-a-vbrc.bolt.host/" class="btn btn-outline">Open contractor portal</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / ADDRESS -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header" style="margin-bottom:1.2rem;">
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">Let’s talk about your next project.</h2>
+          <p class="section-subtitle">
+            Have questions about BrightScale, partnerships or larger remodels? Reach out and we’ll get back to you.
+          </p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:1.5rem; font-size:0.9rem; color:#4b5563;">
+          <div style="flex:1 1 220px;">
+            <h3 style="font-size:0.95rem; color:var(--bs-primary); margin-bottom:0.3rem;">General contact</h3>
+            <p>Email: <a href="mailto:contact@brightscalegroup.com">contact@brightscalegroup.com</a></p>
+            <p>Phone: <a href="tel:+19545041068">(954) 504-1068</a></p>
+          </div>
+          <div style="flex:1 1 220px;">
+            <h3 style="font-size:0.95rem; color:var(--bs-primary); margin-bottom:0.3rem;">Mailing address</h3>
+            <p>BrightScale</p>
+            <p>5851 Holmberg Rd, Unit 4124</p>
+            <p>Parkland, FL 33067</p>
+            <!-- Se o ZIP correto for 33067, só altere aqui depois -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÕES LEGAIS SIMPLES EM UMA PÁGINA SÓ (pode virar outra página depois) -->
+    <section id="legal" class="legal-section">
+      <div class="container">
+        <h2>Legal basics</h2>
+
+        <h3 id="privacy">Privacy Policy (summary)</h3>
+        <p>
+          BrightScale collects the information you send through our forms (such as name, contact details, project
+          description and service preferences) so we can match you with professionals and operate our platform.
+        </p>
+        <p>
+          We do not sell your personal information. We may share your project details with a limited number of
+          professionals when it is necessary to connect you with potential providers.
+        </p>
+
+        <h3 id="terms">Terms of Use (summary)</h3>
+        <p>
+          BrightScale is a lead-generation and marketplace platform. We introduce homeowners to independent
+          professionals, but we do not provide the services ourselves and are not a party to the contract between
+          you and the pro. You are responsible for reviewing licenses, insurance and agreements with any provider.
+        </p>
+
+        <h3 id="refund">Lead & payment policy (summary)</h3>
+        <p>
+          Contractors pay BrightScale for access to lead information. Refunds or credits, when applicable, are
+          evaluated on a case-by-case basis according to our future full lead policy. Homeowners are never charged
+          for submitting a request on the public website.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <strong style="color:var(--bs-primary);">BrightScale</strong>
+          <div>© <span id="year"></span> BrightScale Group. All rights reserved.</div>
+        </div>
+        <div class="footer-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#services">Services</a>
+          <a href="#lead-form">Get a quote</a>
+          <a href="#pros">For pros</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#terms">Terms</a>
+        </div>
+      </div>
+      <div>
+        Built in South Florida for homeowners and pros who want a brighter way to do projects.
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Atualiza ano automaticamente
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Lógica básica para envio via fetch (JSON).
+  // IMPORTANTE: isso só funcionará depois que você trocar YOUR_ENDPOINT_HERE
+  // por um endpoint real e configurar CORS no Supabase/Bolt.
+  const form = document.getElementById("project-form");
+  const statusEl = document.getElementById("form-status");
+
+  form.addEventListener("submit", async function (event) {
+    const endpoint = form.getAttribute("action");
+
+    // Se o usuário ainda não substituiu a URL, apenas mostra aviso
+    if (!endpoint || endpoint === "YOUR_ENDPOINT_HERE") {
+      event.preventDefault();
+      statusEl.style.display = "block";
+      statusEl.classList.remove("error");
+      statusEl.textContent = "Form endpoint not configured yet. Please update the action attribute with your API URL.";
+      return;
+    }
+
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const payload = {};
+    formData.forEach((value, key) => {
+      payload[key] = value;
+    });
+
+    statusEl.style.display = "block";
+    statusEl.classList.remove("error");
+    statusEl.textContent = "Sending your request...";
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+
+      statusEl.textContent = "Thanks! Your request was sent successfully.";
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      statusEl.classList.add("error");
+      statusEl.textContent = "Something went wrong. Please try again later.";
+    }
+  });
+</script>
+</body>
+</html>
