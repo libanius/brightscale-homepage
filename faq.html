@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrightScale – FAQs</title>
+  <meta name="description" content="Answers to common questions for homeowners and professionals using BrightScale." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/favicons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+
+  <style>
+    :root{
+      --bg:#f7f8f9;
+      --card:#ffffff;
+      --text:#1f2328;
+      --muted:#60656f;
+      --accent:#22c55e;
+      --accent-strong:#16a34a;
+      --border:#e7e9ee;
+      --shadow:0 12px 28px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    header{
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:10px 0;
+    }
+
+    .logo{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+
+    .logo-img{
+      height:58px;
+      width:auto;
+      display:block;
+    }
+
+    .menu{
+      display:flex;
+      gap:18px;
+      font-weight:600;
+      font-size:.95rem;
+      flex-wrap:wrap;
+    }
+
+    .menu a.pro{color:var(--accent)}
+
+    main{
+      padding:36px 0 90px;
+    }
+
+    h1{
+      font-size:clamp(2rem,3vw,2.6rem);
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+
+    h2{
+      font-size:clamp(1.2rem,2.1vw,1.55rem);
+      font-weight:700;
+      letter-spacing:-0.015em;
+    }
+
+    p{color:var(--muted)}
+
+    .faq-hero{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:14px;
+      padding:22px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      background:#ecfdf3;
+      color:var(--accent-strong);
+      border-radius:999px;
+      font-weight:700;
+      font-size:.85rem;
+      width:fit-content;
+    }
+
+    .faq-sections{
+      margin-top:30px;
+      display:grid;
+      gap:20px;
+    }
+
+    .faq-block{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:20px 22px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .faq-block p.intro{margin-top:-4px}
+
+    .qa-list{
+      display:grid;
+      gap:10px;
+    }
+
+    .qa-item{
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:#fbfbfc;
+      padding:14px 16px;
+      transition:border-color .12s ease, box-shadow .12s ease;
+    }
+
+    .qa-item:hover{
+      border-color:rgba(34,197,94,.35);
+      box-shadow:0 10px 20px rgba(0,0,0,.04);
+    }
+
+    .qa-item summary{
+      cursor:pointer;
+      font-weight:700;
+      color:var(--text);
+      list-style:none;
+      outline:none;
+    }
+
+    .qa-item summary::-webkit-details-marker{display:none}
+
+    .qa-item p{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .back-home{
+      margin-top:26px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--card);
+      font-weight:700;
+      color:var(--text);
+      transition:border-color .12s ease, box-shadow .12s ease;
+    }
+
+    .back-home:hover{
+      border-color:rgba(31,35,40,.22);
+      box-shadow:0 12px 20px rgba(0,0,0,.05);
+    }
+
+    .back-home svg{
+      width:16px;
+      height:16px;
+      stroke-width:1.8;
+    }
+
+    footer{
+      margin-top:70px;
+      padding:30px 0 50px;
+      border-top:1px solid var(--border);
+      background:var(--card);
+    }
+
+    .footer-inner{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      font-size:.95rem;
+      color:var(--muted);
+    }
+
+    .footer-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="/" class="logo">
+      <img src="assets/images/logo-brightscale.svg" alt="BrightScale" class="logo-img">
+    </a>
+    <nav class="menu">
+      <a href="/brightscale_homepage.html">Home</a>
+      <a href="#homeowner">Homeowners</a>
+      <a href="#professionals">Professionals</a>
+      <a href="#privacy">Privacy</a>
+      <a href="https://subcontractor-lead-a-vbrc.bolt.host" class="pro">Portal Pro</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="faq-hero">
+      <span class="eyebrow">Help center</span>
+      <h1>Frequently Asked Questions</h1>
+      <p>Find answers for homeowners, professionals, and the BrightScale platform. All content is fully visible for quick scanning and search.</p>
+      <a class="back-home" href="/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+        Back to homepage
+      </a>
+    </section>
+
+    <div class="faq-sections">
+      <section class="faq-block" id="homeowner">
+        <div>
+          <h2>For Homeowners</h2>
+          <p class="intro">Answers to help you request quotes confidently.</p>
+        </div>
+        <div class="qa-list">
+          <details class="qa-item" open>
+            <summary>How many quotes will I receive?</summary>
+            <p>We aim to match you with up to three interested pros so you can compare options without being overwhelmed.</p>
+          </details>
+          <details class="qa-item">
+            <summary>Can I request work outside South Florida?</summary>
+            <p>BrightScale currently focuses on South Florida. If you are nearby, submit your request and we will confirm availability.</p>
+          </details>
+          <details class="qa-item">
+            <summary>What if a pro does not respond?</summary>
+            <p>You can reopen your request at any time. Our team monitors response times and will rematch you if needed.</p>
+          </details>
+          <details class="qa-item">
+            <summary>Are pros insured and licensed?</summary>
+            <p>We check licensing and insurance for trade categories where they are required and review documentation during onboarding.</p>
+          </details>
+          <details class="qa-item">
+            <summary>How do I update project details after submitting?</summary>
+            <p>Reply to your confirmation email with the new details or submit the form again; we will update the request for you.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="faq-block" id="professionals">
+        <div>
+          <h2>For Professionals</h2>
+          <p class="intro">Learn how to join BrightScale and win local work.</p>
+        </div>
+        <div class="qa-list">
+          <details class="qa-item" open>
+            <summary>How do I join the BrightScale network?</summary>
+            <p>Submit your business details through the Portal Pro link. We verify licensing, insurance, and recent project history.</p>
+          </details>
+          <details class="qa-item">
+            <summary>How are leads distributed?</summary>
+            <p>Leads are shared with a small group of matched pros based on location, trade, and responsiveness to keep quality high.</p>
+          </details>
+          <details class="qa-item">
+            <summary>What does it cost to participate?</summary>
+            <p>Pros pay per qualified opportunity or on a subscription depending on volume. Pricing is transparent inside the portal.</p>
+          </details>
+          <details class="qa-item">
+            <summary>Can I pause or set service areas?</summary>
+            <p>Yes. Inside the portal you can pause new leads, adjust coverage ZIP codes, and set job types you want to receive.</p>
+          </details>
+          <details class="qa-item">
+            <summary>How is homeowner quality ensured?</summary>
+            <p>Requests are screened for completeness and intent. Duplicate or incomplete requests are filtered before reaching you.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="faq-block" id="privacy">
+        <div>
+          <h2>Privacy & Platform</h2>
+          <p class="intro">Understand how we protect data and keep the marketplace fair.</p>
+        </div>
+        <div class="qa-list">
+          <details class="qa-item" open>
+            <summary>How is my data used?</summary>
+            <p>Information is used to connect homeowners and pros, improve service quality, and is never sold to third parties.</p>
+          </details>
+          <details class="qa-item">
+            <summary>Can I request deletion of my data?</summary>
+            <p>Yes. Contact us via the privacy link in the footer and we will process data access or deletion requests promptly.</p>
+          </details>
+          <details class="qa-item">
+            <summary>Do you share contact info with every pro?</summary>
+            <p>Your contact details are shared only with matched professionals relevant to your request, not broadcast to the full network.</p>
+          </details>
+          <details class="qa-item">
+            <summary>Is the FAQ content indexable?</summary>
+            <p>All answers are present in the HTML for easy search and indexing; accordions only toggle visibility.</p>
+          </details>
+          <details class="qa-item">
+            <summary>Where can I read the full policies?</summary>
+            <p>Visit the Privacy Policy and Terms of Service links in the footer to review how BrightScale handles data and usage.</p>
+          </details>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© BrightScale • Serving South Florida</div>
+    <div class="footer-links">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms-of-service">Terms of Service</a>
+      <a href="mailto:contact@brightscalegoup.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
