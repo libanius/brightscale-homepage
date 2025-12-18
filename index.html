@@ -12,12 +12,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="/assets/favicons/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <link rel="icon" href="/assets/favicons/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/favicons/favicon.ico?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=2">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
 
   <style>
     :root{
@@ -92,6 +92,58 @@
       align-items:center;
       padding:8px 6px;
     }
+
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+    }
+
+    .dropdown summary{
+      list-style:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 6px;
+      font-weight:inherit;
+      color:inherit;
+    }
+
+    .burger-icon{
+      width:22px;
+      height:22px;
+      stroke-width:2;
+    }
+
+    .dropdown summary::-webkit-details-marker{display:none}
+
+    .dropdown-menu{
+      position:absolute;
+      right:0;
+      top:calc(100% + 8px);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      box-shadow:0 12px 28px rgba(0,0,0,.08);
+      display:flex;
+      flex-direction:column;
+      min-width:150px;
+      padding:8px;
+      z-index:30;
+    }
+
+    .dropdown-menu a{
+      padding:10px 10px;
+      border-radius:10px;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(31,35,40,.04);
+      border-color:transparent;
+    }
+
+    details:not([open]) .dropdown-menu{display:none}
 
     .menu a.pro{color:var(--accent)}
 
@@ -198,6 +250,7 @@
       object-fit:cover;
       box-shadow:0 14px 38px rgba(0,0,0,.08);
       margin-top:0;
+      background:var(--bg);
     }
 
     .hero-copy > *:first-child,
@@ -583,9 +636,20 @@
     </a>
     <nav class="menu">
       <a href="/">Home</a>
-      <a href="#">Services</a>
-      <a href="/faq.html">FAQ</a>
       <a href="https://subcontractor-lead-a-vbrc.bolt.host" class="pro">Pro</a>
+      <details class="dropdown">
+        <summary aria-label="Menu">
+          <svg class="burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </summary>
+        <div class="dropdown-menu">
+          <a href="#">Services</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+        </div>
+      </details>
     </nav>
   </div>
 </header>
@@ -607,7 +671,7 @@
             </div>
           </div>
           <div class="hero-image">
-            <img src="/assets/images/hero-homeowner-pro.png" alt="Homeowner reviewing project details with a local professional">
+            <img src="/assets/images/hero-homeowner-pro.svg" alt="Homeowner reviewing project details with a local professional">
           </div>
         </div>
       </div>
@@ -961,10 +1025,10 @@
 
 <footer>
   <div class="container footer-inner">
-    <div>© BrightScale • Serving South Florida</div>
+    <div>© BrightScale Group LLC • Serving South Florida</div>
     <div class="footer-links">
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/terms-of-service">Terms of Service</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
       <a href="#lead-form">Contact</a>
     </div>
   </div>

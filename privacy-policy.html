@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrightScale – Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for BrightScale Group LLC covering data collection, processing, and user rights." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicons/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/favicons/favicon.ico?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=2">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
+
+  <style>
+    :root{
+      --bg:#f7f8f9;
+      --card:#ffffff;
+      --text:#1f2328;
+      --muted:#60656f;
+      --accent:#22c55e;
+      --accent-strong:#16a34a;
+      --border:#e7e9ee;
+      --shadow:0 12px 28px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    header{
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:10px 0;
+    }
+
+    .logo{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+
+    .logo-img{
+      height:58px;
+      width:auto;
+      display:block;
+    }
+
+    .menu{
+      display:flex;
+      gap:18px;
+      font-weight:600;
+      font-size:.95rem;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .menu a{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 6px;
+    }
+
+    .dropdown{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+    }
+
+    .dropdown summary{
+      list-style:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 6px;
+      font-weight:inherit;
+      color:inherit;
+    }
+
+    .dropdown summary::-webkit-details-marker{display:none}
+
+    .burger-icon{
+      width:22px;
+      height:22px;
+      stroke-width:2;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      right:0;
+      top:calc(100% + 8px);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      box-shadow:0 12px 28px rgba(0,0,0,.08);
+      display:flex;
+      flex-direction:column;
+      min-width:180px;
+      padding:8px;
+      z-index:30;
+    }
+
+    .dropdown-menu a{
+      padding:10px 10px;
+      border-radius:10px;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(31,35,40,.04);
+      border-color:transparent;
+    }
+
+    details:not([open]) .dropdown-menu{display:none}
+
+    .menu a.pro{color:var(--accent)}
+
+    main{
+      padding:40px 0 80px;
+    }
+
+    h1{
+      font-size:clamp(2rem,3vw,2.6rem);
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+
+    h2{
+      font-size:clamp(1.2rem,2.1vw,1.55rem);
+      font-weight:700;
+      letter-spacing:-0.015em;
+    }
+
+    p{color:var(--muted)}
+
+    .page-hero{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:14px;
+      padding:22px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      background:#ecfdf3;
+      color:var(--accent-strong);
+      border-radius:999px;
+      font-weight:700;
+      font-size:.85rem;
+      width:fit-content;
+    }
+
+    .policy-content{
+      margin-top:26px;
+      display:grid;
+      gap:16px;
+    }
+
+    .policy-section{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px 18px 16px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .policy-section h3{
+      font-size:1.05rem;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .policy-section ul{
+      padding-left:18px;
+      color:var(--muted);
+      display:grid;
+      gap:6px;
+    }
+
+    .contact-block{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--card);
+      font-weight:700;
+      width:fit-content;
+      margin-top:6px;
+    }
+
+    footer{
+      margin-top:70px;
+      padding:30px 0 50px;
+      border-top:1px solid var(--border);
+      background:var(--card);
+    }
+
+    .footer-inner{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      font-size:.95rem;
+      color:var(--muted);
+    }
+
+    .footer-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:640px){
+      .nav{
+        flex-wrap:wrap;
+        gap:12px;
+        padding:12px 0;
+      }
+      .logo-img{height:50px}
+      .menu{
+        width:100%;
+        justify-content:flex-start;
+        gap:14px;
+      }
+      .menu a{padding:10px 4px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="/" class="logo">
+      <img src="assets/images/logo-brightscale.svg" alt="BrightScale" class="logo-img">
+    </a>
+    <nav class="menu">
+      <a href="/">Home</a>
+      <a href="https://subcontractor-lead-a-vbrc.bolt.host" class="pro">Pro</a>
+      <details class="dropdown">
+        <summary aria-label="Menu">
+          <svg class="burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </summary>
+        <div class="dropdown-menu">
+          <a href="#">Services</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="page-hero">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p>BrightScale Group LLC — Last Updated: December 18, 2025</p>
+    </section>
+
+    <div class="policy-content">
+      <div class="policy-section">
+        <h3>Scope and Applicability</h3>
+        <p>This Privacy Policy applies to all users of the Platform, including homeowners, contractors, and visitors. BrightScale operates a technology-based marketplace and lead intermediation platform and processes personal data in accordance with applicable data protection laws, including, where applicable, the GDPR and LGPD.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Information We Collect</h3>
+        <p>We may collect and process the following categories of information:</p>
+        <ul>
+          <li><strong>Personal Data:</strong> Name, email address, phone number, account and registration information.</li>
+          <li><strong>Usage and Technical Data:</strong> IP address, device and browser details, OS information, log files, interaction data, analytics, and performance metrics.</li>
+          <li><strong>Transaction Data:</strong> Payment status and history, credits purchased and used. BrightScale does not store full credit card numbers; all payments are processed by Stripe.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h3>Legal Basis for Processing</h3>
+        <p>We process personal data based on performance of a contract, user consent, compliance with legal obligations, and legitimate business interests including security, fraud prevention, and platform improvement.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Purpose of Data Processing</h3>
+        <ul>
+          <li>Operate, maintain, and improve the Platform</li>
+          <li>Enable marketplace and lead intermediation features</li>
+          <li>Process payments through Stripe</li>
+          <li>Provide customer support and communications</li>
+          <li>Monitor security, prevent fraud, and enforce Terms of Service</li>
+          <li>Comply with legal and regulatory obligations</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h3>Data Sharing and Third Parties</h3>
+        <p>We may share personal data with Stripe, infrastructure, hosting, analytics, and security providers, and legal or governmental authorities when required by law. BrightScale does not sell personal data.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>International Data Transfers</h3>
+        <p>By using the Platform, you acknowledge that your data may be transferred to and processed in countries other than your own, including the United States. BrightScale implements reasonable safeguards in line with applicable laws.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Data Retention</h3>
+        <p>We retain personal data only as long as necessary to fulfill the purposes outlined in this Policy, maintain operations, comply with legal requirements, and resolve disputes or enforce agreements.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>User Rights (LGPD & GDPR)</h3>
+        <p>Depending on your jurisdiction, you may have the right to access, correct, delete, restrict, or object to processing of your data, request portability, or withdraw consent. Requests may be submitted via the contact below. BrightScale will respond within required timeframes.</p>
+        <div class="contact-block">
+          <span>contact@brightscalegroup.com</span>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <h3>Data Security</h3>
+        <p>We implement administrative, technical, and organizational measures to protect personal data from unauthorized access, loss, misuse, or alteration. No system can be guaranteed 100% secure.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Children’s Privacy</h3>
+        <p>The Platform is not intended for individuals under 18. We do not knowingly collect personal data from minors.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Changes to This Privacy Policy</h3>
+        <p>We may update this Privacy Policy at any time. Changes will be posted on this page with an updated revision date. Continued use of the Platform constitutes acceptance of the updated Policy.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Contact Information</h3>
+        <p>For privacy-related questions or data requests, please contact:</p>
+        <p>BrightScale Group LLC</p>
+        <div class="contact-block">
+          <span>contact@brightscalegroup.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© BrightScale • Serving South Florida</div>
+    <div class="footer-links">
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <a href="mailto:contact@brightscalegroup.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
