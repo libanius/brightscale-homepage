@@ -18,6 +18,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=2">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=2">
   <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root{
@@ -52,9 +53,11 @@
     header{
       background:var(--card);
       border-bottom:1px solid var(--border);
-      position:sticky;
+      position:fixed;
       top:0;
-      z-index:20;
+      left:0;
+      width:100%;
+      z-index:50;
     }
 
     .nav{
@@ -151,7 +154,7 @@
       .menu{gap:12px}
     }
 
-    main{padding:40px 0 80px}
+    main{padding:72px 0 80px}
 
     section{margin-top:64px}
 
@@ -659,21 +662,34 @@
 <main>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <span class="hero-eyebrow">Trusted local pros</span>
-            <h1>Hire with confidence for your next home project</h1>
-            <p>Compare quotes, speak with vetted professionals, and book with peace of mind across South Florida.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#lead-form">Get free quotes</a>
-              <a class="btn btn-ghost" href="#demand">Browse services</a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <img src="/assets/images/hero-homeowner-pro.svg" alt="Homeowner reviewing project details with a local professional">
+  <section class="relative w-full !mt-0">
+    <div class="relative z-0 h-[100svh] w-full overflow-hidden">
+      <img
+        src="/assets/images/nvohero-homeowner-pro.png"
+        alt="Homeowner reviewing project details with a local professional"
+        class="absolute inset-0 h-full w-full object-cover object-[70%_center] sm:object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/60"></div>
+
+      <div class="absolute inset-0 z-10 flex items-center px-6 sm:px-10 lg:px-16">
+        <div class="max-w-3xl">
+          <p class="mb-4 text-xs uppercase tracking-[0.3em] text-white/80">Trusted local pros</p>
+          <h1 class="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+            Hire with confidence for your next home project
+          </h1>
+          <p class="mt-5 text-lg text-white/85 sm:text-xl">
+            Compare quotes, speak with vetted professionals, and book with peace of mind across South Florida.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              class="inline-flex items-center justify-center rounded-full bg-[#22c55e] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#16a34a] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              href="#lead-form"
+            >
+              Get free quotes
+            </a>
+            <a class="text-sm font-semibold text-white/85 transition hover:text-white" href="#demand">
+              Browse services
+            </a>
           </div>
         </div>
       </div>
