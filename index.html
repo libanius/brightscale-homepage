@@ -641,7 +641,7 @@
     </a>
     <nav class="menu">
       <a href="/">Home</a>
-      <a href="https://subcontractor-lead-a-vbrc.bolt.host" class="pro">Pro</a>
+      <a href="/pro.html" class="pro">Pro</a>
       <details class="dropdown">
         <summary aria-label="Menu">
           <svg class="burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -649,7 +649,7 @@
           </svg>
         </summary>
         <div class="dropdown-menu">
-          <a href="#">Services</a>
+          <a href="#demand-header">Services</a>
           <a href="/faq.html">FAQ</a>
           <a href="/privacy-policy.html">Privacy Policy</a>
           <a href="/terms-of-service.html">Terms of Service</a>
@@ -667,7 +667,7 @@
       <img
         src="/assets/images/nvohero-homeowner-pro.png"
         alt="Homeowner reviewing project details with a local professional"
-        class="absolute inset-0 h-full w-full object-cover object-[70%_center] sm:object-center"
+        class="absolute inset-0 h-full w-full object-cover object-[70%_70%] sm:object-center"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/60"></div>
 
@@ -911,7 +911,7 @@
         </button>
       </div>
 
-      <div class="demand-header">
+      <div class="demand-header" id="demand-header">
         <h2 class="demand-title">
           Most in-demand home services in <span>South Florida</span>
         </h2>
@@ -921,13 +921,15 @@
       </div>
 
       <div class="demand-grid">
-        <a href="#" class="demand-card"><strong>Cleaning & Maid Services</strong><span>Recurring and one-time jobs</span></a>
-        <a href="#" class="demand-card"><strong>Painting</strong><span>Interior and exterior projects</span></a>
+        <a href="/cleaning-maid-services.html" class="demand-card"><strong>Cleaning & Maid Services</strong><span>Recurring and one-time jobs</span></a>
+        <a href="/painting-services.html" class="demand-card"><strong>Painting</strong><span>Interior and exterior projects</span></a>
         <a href="/handyman-services.html" class="demand-card"><strong>Handyman Service</strong><span>Repairs and installs</span></a>
-        <a href="#" class="demand-card"><strong>Roofing</strong><span>Repairs and replacements</span></a>
-        <a href="#" class="demand-card"><strong>Plumbing</strong><span>Leaks and installations</span></a>
+        <a href="/pool-care.html" class="demand-card"><strong>Pool Care</strong><span>Cleaning and water balancing</span></a>
+        <a href="/custom-cabinets.html" class="demand-card"><strong>Custom Cabinets</strong><span>Built-ins and storage upgrades</span></a>
+        <a href="/roofing-services.html" class="demand-card"><strong>Roofing</strong><span>Repairs and replacements</span></a>
+        <a href="/plumbing-services.html" class="demand-card"><strong>Plumbing</strong><span>Leaks and installations</span></a>
         <a href="#" class="demand-card"><strong>Remodeling</strong><span>Kitchens and bathrooms</span></a>
-        <a href="#" class="demand-card"><strong>Electrical Service</strong><span>Panels and wiring</span></a>
+        <a href="/electrical-services.html" class="demand-card"><strong>Electrical Service</strong><span>Panels and wiring</span></a>
         <a href="#" class="demand-card"><strong>General Contracting</strong><span>Multi-trade projects</span></a>
       </div>
 
@@ -1038,6 +1040,16 @@
     };
     accept.addEventListener('click',()=>saveChoice('accepted'));
     reject.addEventListener('click',()=>saveChoice('rejected'));
+  })();
+
+  (function(){
+    const dropdown=document.querySelector('.dropdown');
+    if(!dropdown) return;
+    const close=()=>dropdown.removeAttribute('open');
+    document.addEventListener('click',(event)=>{
+      if(!dropdown.contains(event.target)) close();
+    });
+    window.addEventListener('scroll',close,{passive:true});
   })();
 </script>
 

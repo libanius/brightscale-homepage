@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Custom Cabinets | BrightScale</title>
+  <meta name="description" content="Custom cabinets and built-ins near you. Request design and installation with BrightScale." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicons/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/favicons/favicon.ico?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=2">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Custom Cabinets",
+      "provider": {
+        "@type": "Organization",
+        "name": "BrightScale",
+        "legalName": "BrightScale Group LLC"
+      },
+      "serviceType": "Custom cabinets",
+      "areaServed": "South Florida",
+      "description": "Connect with local cabinet pros for custom cabinetry and built-ins."
+    }
+  </script>
+
+  <style>
+    :root{
+      --bg:#f7f8f9;
+      --card:#ffffff;
+      --text:#1f2328;
+      --muted:#60656f;
+      --accent:#22c55e;
+      --accent-strong:#16a34a;
+      --border:#e7e9ee;
+      --shadow:0 8px 20px rgba(0,0,0,.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    img{max-width:100%;display:block}
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    header{
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:50;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 0;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .nav-link{
+      font-weight:600;
+      color:#2b2b2b;
+    }
+
+    .nav-link:hover{color:#1f2328}
+
+    .logo{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+
+    .logo-img{
+      height:52px;
+      width:auto;
+      display:block;
+    }
+
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 18px;
+      border-radius:999px;
+      background:transparent;
+      color:#2b2b2b;
+      font-weight:700;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    .nav-cta:hover{color:#1f2328;transform:translateY(-1px)}
+
+    main{padding:0 0 80px}
+
+    section{margin-top:64px}
+
+    h1{
+      font-size:clamp(2rem,3vw,2.75rem);
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+
+    h2{
+      font-size:clamp(1.35rem,2.4vw,1.8rem);
+      font-weight:800;
+      letter-spacing:-0.015em;
+    }
+
+    p{color:var(--muted)}
+
+    .hero{margin-top:10px}
+
+    .hero-inner{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-visual{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:linear-gradient(135deg,#f1f7f2,#f7f3ea);
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .hero-visual img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .hero-copy{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      max-width:520px;
+    }
+
+    .hero-caption{
+      position:absolute;
+      left:22px;
+      bottom:22px;
+      max-width:440px;
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.12);
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      background:#ecfdf3;
+      color:var(--accent-strong);
+      border-radius:999px;
+      font-weight:700;
+      font-size:.85rem;
+      width:fit-content;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 20px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:1rem;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 8px 18px rgba(34,197,94,.18);
+    }
+
+    .btn-primary:hover{transform:translateY(-1px);background:var(--accent-strong)}
+
+    .microline{
+      font-size:.9rem;
+      color:var(--muted);
+    }
+
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .form-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .form-card h2{margin-bottom:6px}
+
+    .form-card p{margin-bottom:16px}
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    label{
+      font-weight:600;
+      margin-bottom:6px;
+      display:block;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      font-family:inherit;
+      font-size:1rem;
+      background:#fff;
+      transition:box-shadow .12s ease, transform .12s ease, border-color .12s ease;
+    }
+
+    textarea{min-height:110px;resize:vertical}
+
+    input:focus, select:focus, textarea:focus{
+      outline:none;
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(34,197,94,.2);
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    button[type="submit"]{
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      font-weight:700;
+      border-radius:12px;
+      padding:12px 16px;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    button[type="submit"]:hover{background:var(--accent-strong);transform:translateY(-1px)}
+
+    .form-message{
+      font-size:.95rem;
+      color:var(--accent-strong);
+      margin-top:6px;
+    }
+
+    .form-message.error{color:#dc2626}
+
+    .value-block{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:24px;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .service-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      font-weight:600;
+      color:#2a2f35;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .step{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+    }
+
+    .step span{
+      display:inline-flex;
+      width:32px;
+      height:32px;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background:#ecfdf3;
+      color:var(--accent-strong);
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .trust-list{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+    }
+
+    .trust-item{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:16px;
+      font-weight:600;
+    }
+
+    .final-cta{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    footer{
+      margin-top:64px;
+      border-top:1px solid var(--border);
+      padding:24px 0 40px;
+      background:var(--card);
+    }
+
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{color:var(--muted)}
+
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-caption{
+        position:static;
+        margin-top:16px;
+        box-shadow:none;
+        backdrop-filter:none;
+      }
+      .hero-visual{min-height:320px}
+      .hero-side{order:2}
+    }
+
+    @media (max-width:720px){
+      .row{grid-template-columns:1fr}
+      .hero-inner{padding:22px}
+      .hero-side{order:2}
+      .form-card{order:2}
+      .nav-cta{padding:10px 14px}
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed inset-x-0 top-0 z-50">
+    <nav class="container nav">
+      <a class="logo" href="/">
+        <img class="logo-img" src="/assets/images/logo-brightscale.svg" alt="BrightScale" />
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#demand">Services</a>
+      <a class="nav-cta" href="#lead-form">Get Cabinets</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="relative z-0 min-h-screen w-full overflow-hidden !mt-0">
+      <img
+        src="/assets/images/hero-custom-cabinets.png"
+        alt="Custom cabinetry installation in a modern kitchen"
+        class="absolute inset-0 h-full w-full object-cover object-[70%_center] sm:object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/60"></div>
+
+      <div class="relative z-10 flex min-h-screen items-center px-6 sm:px-10 lg:px-16">
+        <div class="max-w-3xl">
+          <p class="mb-4 text-xs uppercase tracking-[0.3em] text-white/80">Custom cabinetry, local pros</p>
+          <h1 class="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+            Custom Cabinets Built for Your Home
+          </h1>
+          <p class="mt-5 text-lg text-white/85 sm:text-xl">
+            Get connected with a local cabinet pro for design, build, and installation — fast and simple.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              class="inline-flex items-center justify-center rounded-full bg-[#22c55e] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#16a34a] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              href="#lead-form"
+            >
+              Get Cabinets
+            </a>
+            <span class="text-sm text-white/75">Free request · No obligation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demand">
+      <div class="container">
+        <div class="form-card" id="lead-form">
+          <h2>Request Custom Cabinets</h2>
+          <p>Share a few details and we will follow up quickly.</p>
+
+          <form id="project-form" action="YOUR_ENDPOINT_HERE" method="POST">
+            <div class="field">
+              <label for="service_type">What type of cabinet project do you need? <span aria-hidden="true">*</span></label>
+              <select id="service_type" name="service_type" required>
+                <option value="">Select a service</option>
+                <option selected>Kitchen cabinets</option>
+                <option>Bathroom vanities</option>
+                <option>Closet built-ins</option>
+                <option>Entertainment center</option>
+                <option>Home office storage</option>
+                <option>Cabinet refacing</option>
+                <option>Custom shelving</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="zip">ZIP code <span aria-hidden="true">*</span></label>
+                <input id="zip" name="zip" required />
+              </div>
+              <div class="field">
+                <label for="timing">When do you need this done? <span aria-hidden="true">*</span></label>
+                <select id="timing" name="timing" required>
+                  <option value="">Choose</option>
+                  <option>As soon as possible</option>
+                  <option>Within 1–2 weeks</option>
+                  <option>Within a month</option>
+                  <option>Just planning</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="details">Describe your cabinet project <span aria-hidden="true">*</span></label>
+              <textarea id="details" name="details" placeholder="Example: Kitchen cabinet refresh, approx. 12 linear feet" required></textarea>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="name">Your name <span aria-hidden="true">*</span></label>
+                <input id="name" name="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email <span aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="phone">Phone <span aria-hidden="true">*</span></label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div class="field">
+                <label for="preferred_contact">Preferred contact method <span aria-hidden="true">*</span></label>
+                <select id="preferred_contact" name="preferred_contact" required>
+                  <option value="">Select</option>
+                  <option>Phone call</option>
+                  <option>Text message</option>
+                  <option>Email</option>
+                </select>
+              </div>
+            </div>
+
+            <input type="hidden" name="source" value="brightscale_custom_cabinets_landing" />
+            <button type="submit">Submit my request</button>
+            <p class="form-message" id="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container value-block">
+        <h2>Built-In Style, Everyday Function.</h2>
+        <p>From kitchens to closets, get custom cabinets that maximize storage and elevate your space.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Common Custom Cabinet Projects</h2>
+        <div class="services-grid">
+          <div class="service-card">Kitchen cabinets</div>
+          <div class="service-card">Bathroom vanities</div>
+          <div class="service-card">Closet systems</div>
+          <div class="service-card">Built-in shelves</div>
+          <div class="service-card">Cabinet refacing</div>
+          <div class="service-card">Mudroom storage</div>
+          <div class="service-card">Custom pantries</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <span>1</span>
+            <p><strong>Tell us what you need.</strong> Share the space and storage goals.</p>
+          </div>
+          <div class="step">
+            <span>2</span>
+            <p><strong>We match you with a local cabinet pro.</strong> Get connected fast.</p>
+          </div>
+          <div class="step">
+            <span>3</span>
+            <p><strong>Get it built and installed.</strong> Enjoy custom cabinetry without the hassle.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Why Homeowners Use BrightScale</h2>
+        <div class="trust-list">
+          <div class="trust-item">Simple request process</div>
+          <div class="trust-item">Focused on local cabinet pros</div>
+          <div class="trust-item">No long-term contracts</div>
+          <div class="trust-item">Clear communication from start to finish</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container final-cta">
+        <h2>Need Custom Cabinets?</h2>
+        <a class="btn btn-primary" href="#lead-form">Request Cabinets</a>
+        <span class="microline">Takes less than 2 minutes</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© BrightScale Group LLC</div>
+      <div class="footer-links">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const form=document.getElementById('project-form');
+      const message=document.getElementById('form-message');
+      const endpoint='https://xgjaseswwhhjwfvuqcvo.supabase.co/functions/v1/public-lead-intake';
+      if(!form) return;
+      const setMessage=(text,isError=false)=>{
+        if(!message) return;
+        message.textContent=text;
+        message.classList.toggle('error',!!isError);
+      };
+      form.addEventListener('submit',async(event)=>{
+        event.preventDefault();
+        setMessage('');
+        const payload=Object.fromEntries(new FormData(form).entries());
+        try{
+          const res=await fetch(endpoint,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          });
+          if(!res.ok) throw new Error('Request failed');
+          setMessage('Request sent! We will reach out soon.');
+          form.reset();
+        }catch(err){
+          setMessage('Could not send your request. Please try again.',true);
+          console.error(err);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

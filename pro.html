@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrightScale Pro | Grow Your Business</title>
+  <meta name="description" content="Join BrightScale Pro to get more local jobs, fast payouts, and steady demand across South Florida." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicons/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/favicons/favicon.ico?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=2">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "BrightScale Pro",
+      "provider": {
+        "@type": "Organization",
+        "name": "BrightScale",
+        "legalName": "BrightScale Group LLC"
+      },
+      "serviceType": "Professional services",
+      "areaServed": "South Florida",
+      "description": "Connect with local homeowners and grow your business with BrightScale Pro."
+    }
+  </script>
+
+  <style>
+    :root{
+      --bg:#f7f8f9;
+      --card:#ffffff;
+      --text:#1f2328;
+      --muted:#60656f;
+      --accent:#22c55e;
+      --accent-strong:#16a34a;
+      --border:#e7e9ee;
+      --shadow:0 8px 20px rgba(0,0,0,.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    img{max-width:100%;display:block}
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    header{
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:50;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 0;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .nav-link{
+      font-weight:600;
+      color:#2b2b2b;
+    }
+
+    .nav-link:hover{color:#1f2328}
+
+    .logo{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+
+    .logo-img{
+      height:52px;
+      width:auto;
+      display:block;
+    }
+
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 18px;
+      border-radius:999px;
+      background:transparent;
+      color:#2b2b2b;
+      font-weight:700;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    .nav-cta:hover{color:#1f2328;transform:translateY(-1px)}
+
+    .language-toggle{
+      background:transparent;
+      border:none;
+      color:inherit;
+      font:inherit;
+      cursor:pointer;
+      padding:0;
+    }
+
+    .language-toggle.is-active{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:6px;
+    }
+
+    main{padding:0 0 80px}
+
+    section{margin-top:64px}
+
+    h1{
+      font-size:clamp(2rem,3vw,2.75rem);
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+
+    h2{
+      font-size:clamp(1.35rem,2.4vw,1.8rem);
+      font-weight:800;
+      letter-spacing:-0.015em;
+    }
+
+    p{color:var(--muted)}
+
+    .hero{margin-top:10px}
+
+    .hero-inner{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-visual{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:linear-gradient(135deg,#f1f7f2,#f7f3ea);
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .hero-visual img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .hero-copy{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      max-width:520px;
+    }
+
+    .hero-caption{
+      position:absolute;
+      left:22px;
+      bottom:22px;
+      max-width:440px;
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.12);
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      background:#ecfdf3;
+      color:var(--accent-strong);
+      border-radius:999px;
+      font-weight:700;
+      font-size:.85rem;
+      width:fit-content;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 20px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:1rem;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 8px 18px rgba(34,197,94,.18);
+    }
+
+    .btn-primary:hover{transform:translateY(-1px);background:var(--accent-strong)}
+
+    .microline{
+      font-size:.9rem;
+      color:var(--muted);
+    }
+
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .form-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .form-card h2{margin-bottom:6px}
+
+    .form-card p{margin-bottom:16px}
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    label{
+      font-weight:600;
+      margin-bottom:6px;
+      display:block;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      font-family:inherit;
+      font-size:1rem;
+      background:#fff;
+      transition:box-shadow .12s ease, transform .12s ease, border-color .12s ease;
+    }
+
+    textarea{min-height:110px;resize:vertical}
+
+    input:focus, select:focus, textarea:focus{
+      outline:none;
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(34,197,94,.2);
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    button[type="submit"]{
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      font-weight:700;
+      border-radius:12px;
+      padding:12px 16px;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    button[type="submit"]:hover{background:var(--accent-strong);transform:translateY(-1px)}
+
+    .form-message{
+      font-size:.95rem;
+      color:var(--accent-strong);
+      margin-top:6px;
+    }
+
+    .form-message.error{color:#dc2626}
+
+    .value-block{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:24px;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .service-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      font-weight:600;
+      color:#2a2f35;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .step{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+    }
+
+    .step span{
+      display:inline-flex;
+      width:32px;
+      height:32px;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background:#ecfdf3;
+      color:var(--accent-strong);
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .trust-list{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+    }
+
+    .trust-item{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:16px;
+      font-weight:600;
+    }
+
+    .final-cta{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    footer{
+      margin-top:64px;
+      border-top:1px solid var(--border);
+      padding:24px 0 40px;
+      background:var(--card);
+    }
+
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{color:var(--muted)}
+
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-caption{
+        position:static;
+        margin-top:16px;
+        box-shadow:none;
+        backdrop-filter:none;
+      }
+      .hero-visual{min-height:320px}
+      .hero-side{order:2}
+    }
+
+    @media (max-width:720px){
+      .row{grid-template-columns:1fr}
+      .hero-inner{padding:22px}
+      .hero-side{order:2}
+      .form-card{order:2}
+      .nav-cta{padding:10px 14px}
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed inset-x-0 top-0 z-50">
+    <nav class="container nav">
+      <a class="logo" href="/">
+        <img class="logo-img" src="/assets/images/logo-brightscale.svg" alt="BrightScale" />
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#demand">Services</a>
+        <a class="nav-link" href="https://subcontractor-lead-a-vbrc.bolt.host">Log in</a>
+        <a class="nav-cta" href="https://subcontractor-lead-a-vbrc.bolt.host" data-i18n="nav-cta">Apply as a Pro</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="relative z-0 min-h-screen w-full overflow-hidden !mt-0">
+      <img
+        src="/assets/images/hero-pro.png"
+        alt="Professional contractor reviewing a project on a tablet"
+        class="absolute inset-0 h-full w-full object-cover object-[70%_center] sm:object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/60"></div>
+
+      <div class="relative z-10 flex min-h-screen items-center px-6 sm:px-10 lg:px-16">
+        <div class="max-w-3xl">
+          <div class="mb-5 flex flex-wrap items-center gap-10">
+            <p class="text-xs uppercase tracking-[0.3em] text-white/80" data-i18n="eyebrow">More jobs. Less competition. Zero monthly fee.</p>
+            <div class="flex items-center gap-8 text-xs uppercase tracking-[0.25em] text-white/80">
+              <button type="button" class="language-toggle" data-lang="en">EN</button>
+              <button type="button" class="language-toggle" data-lang="pt">PT</button>
+              <button type="button" class="language-toggle" data-lang="es">ES</button>
+            </div>
+          </div>
+          <h1 class="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl" data-i18n="hero-title">
+            BrightScale connects you to homeowners ready to hire
+          </h1>
+          <p class="mt-5 text-lg text-white/85 sm:text-xl" data-i18n="hero-copy">
+            A smart auction model that values your service quality, not who pays the most.
+          </p>
+          <div class="mt-5 text-sm text-white/80" data-i18n="hero-bullets">
+            👉 Receive real opportunities<br>
+            👉 Set your price with total transparency<br>
+            👉 Win work with better margins and less bidding
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              class="inline-flex items-center justify-center rounded-full bg-[#22c55e] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#16a34a] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              href="https://subcontractor-lead-a-vbrc.bolt.host"
+              data-i18n="hero-cta"
+            >
+              Get qualified leads
+            </a>
+            <span class="text-sm text-white/75" data-i18n="hero-note">Free to apply · Quick approval</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demand">
+      <div class="container value-block">
+        <h2 data-i18n="problem-title">Tired of paying top dollar just to get noticed?</h2>
+        <p data-i18n="problem-copy">If you have used traditional marketplaces, you already know the drill:</p>
+        <p class="microline" data-i18n="problem-list">❌ High monthly fees, even without closing jobs<br>❌ Cold leads with no real budget<br>❌ Unfair competition with huge companies<br>❌ Pay to appear, not to close</p>
+        <p class="microline" data-i18n="problem-close">At the end of the day, the winner is not the best pro — it is the biggest ad budget.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 data-i18n="solution-title">A marketplace built for serious pros</h2>
+        <p class="microline" data-i18n="solution-copy">Homeowners define scope and timeline. You decide if you want to compete — with full control.</p>
+        <div class="services-grid">
+          <div class="service-card" data-i18n="benefit-1">No monthly fee</div>
+          <div class="service-card" data-i18n="benefit-2">Join only when you want</div>
+          <div class="service-card" data-i18n="benefit-3">Qualified, verified leads</div>
+          <div class="service-card" data-i18n="benefit-4">Less competition per project</div>
+          <div class="service-card" data-i18n="benefit-5">More control over price and margin</div>
+          <div class="service-card" data-i18n="benefit-6">Reputation that creates an edge</div>
+          <div class="service-card" data-i18n="benefit-7">Support when you need it</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 data-i18n="steps-title">How the BrightScale auction works</h2>
+        <div class="steps">
+          <div class="step">
+            <span>1</span>
+            <p data-i18n="step-1"><strong>The homeowner creates the project.</strong> Scope, budget, and timeline.</p>
+          </div>
+          <div class="step">
+            <span>2</span>
+            <p data-i18n="step-2"><strong>Only qualified local pros join.</strong> Less noise, real chances.</p>
+          </div>
+          <div class="step">
+            <span>3</span>
+            <p data-i18n="step-3"><strong>You send your proposal.</strong> Price, timeline, and your edge.</p>
+          </div>
+          <div class="step">
+            <span>4</span>
+            <p data-i18n="step-4"><strong>The homeowner chooses the best fit.</strong> Not just the lowest bid.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 data-i18n="compare-title">Why the auction model wins</h2>
+        <div class="trust-list">
+          <div class="trust-item" data-i18n="compare-1">Equal visibility for every pro</div>
+          <div class="trust-item" data-i18n="compare-2">Limited participants per project</div>
+          <div class="trust-item" data-i18n="compare-3">You set your price with clarity</div>
+          <div class="trust-item" data-i18n="compare-4">Higher intent, better close rates</div>
+        </div>
+        <p class="microline" data-i18n="compare-note">Result: fewer proposals sent, more contracts won.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container value-block">
+        <h2 data-i18n="who-title">Who BrightScale Pro is for</h2>
+        <p class="microline" data-i18n="who-list">✔️ Local professionals<br>✔️ Independent contractors<br>✔️ Small and mid-size service businesses<br>✔️ Pros who want predictable, sustainable growth</p>
+        <p class="microline" data-i18n="who-note">If you deliver great service, BrightScale works in your favor.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container value-block">
+        <h2 data-i18n="proof-title">Real results from local pros</h2>
+        <p class="microline" data-i18n="proof-quote">“In other apps I paid every month and barely closed anything. With BrightScale, I won my first project in the first week.”</p>
+        <p class="microline" data-i18n="proof-author">— Local Contractor</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container final-cta">
+        <h2 data-i18n="cta-title">Ready for projects that make sense?</h2>
+        <a class="btn btn-primary" href="https://subcontractor-lead-a-vbrc.bolt.host" data-i18n="cta-button">Get opportunities now</a>
+        <span class="microline" data-i18n="cta-note">Join the BrightScale Pro list today</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© BrightScale Group LLC</div>
+      <div class="footer-links">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const translations={
+        en:{
+          eyebrow:'More jobs. Less competition. Zero monthly fee.',
+          'nav-cta':'Apply as a Pro',
+          'hero-title':'BrightScale connects you to homeowners ready to hire',
+          'hero-copy':'A smart auction model that values your service quality, not who pays the most.',
+          'hero-bullets':'👉 Receive real opportunities<br>👉 Set your price with total transparency<br>👉 Win work with better margins and less bidding',
+          'hero-cta':'Get qualified leads',
+          'hero-note':'Free to apply · Quick approval',
+          'form-title':'Apply to BrightScale Pro',
+          'form-subtitle':'Tell us about your services and we will reach out.',
+          'service-label':'What type of services do you offer?',
+          'service-default':'Select a service',
+          'service-other':'Other',
+          'zip-label':'ZIP code',
+          'timing-label':'When can you start?',
+          'timing-default':'Choose',
+          'timing-now':'Immediately',
+          'timing-1-2':'Within 1–2 weeks',
+          'timing-month':'Within a month',
+          'timing-plan':'Just exploring',
+          'details-label':'Tell us about your business',
+          'name-label':'Your name',
+          'email-label':'Email',
+          'phone-label':'Phone',
+          'contact-label':'Preferred contact method',
+          'contact-default':'Select',
+          'contact-phone':'Phone call',
+          'contact-text':'Text message',
+          'contact-email':'Email',
+          'submit':'Submit my request',
+          'problem-title':'Tired of paying top dollar just to get noticed?',
+          'problem-copy':'If you have used traditional marketplaces, you already know the drill:',
+          'problem-list':'❌ High monthly fees, even without closing jobs<br>❌ Cold leads with no real budget<br>❌ Unfair competition with huge companies<br>❌ Pay to appear, not to close',
+          'problem-close':'At the end of the day, the winner is not the best pro — it is the biggest ad budget.',
+          'solution-title':'A marketplace built for serious pros',
+          'solution-copy':'Homeowners define scope and timeline. You decide if you want to compete — with full control.',
+          'benefit-1':'No monthly fee',
+          'benefit-2':'Join only when you want',
+          'benefit-3':'Qualified, verified leads',
+          'benefit-4':'Less competition per project',
+          'benefit-5':'More control over price and margin',
+          'benefit-6':'Reputation that creates an edge',
+          'benefit-7':'Support when you need it',
+          'steps-title':'How the BrightScale auction works',
+          'step-1':'<strong>The homeowner creates the project.</strong> Scope, budget, and timeline.',
+          'step-2':'<strong>Only qualified local pros join.</strong> Less noise, real chances.',
+          'step-3':'<strong>You send your proposal.</strong> Price, timeline, and your edge.',
+          'step-4':'<strong>The homeowner chooses the best fit.</strong> Not just the lowest bid.',
+          'compare-title':'Why the auction model wins',
+          'compare-1':'Equal visibility for every pro',
+          'compare-2':'Limited participants per project',
+          'compare-3':'You set your price with clarity',
+          'compare-4':'Higher intent, better close rates',
+          'compare-note':'Result: fewer proposals sent, more contracts won.',
+          'who-title':'Who BrightScale Pro is for',
+          'who-list':'✔️ Local professionals<br>✔️ Independent contractors<br>✔️ Small and mid-size service businesses<br>✔️ Pros who want predictable, sustainable growth',
+          'who-note':'If you deliver great service, BrightScale works in your favor.',
+          'proof-title':'Real results from local pros',
+          'proof-quote':'“In other apps I paid every month and barely closed anything. With BrightScale, I won my first project in the first week.”',
+          'proof-author':'— Local Contractor',
+          'cta-title':'Ready for projects that make sense?',
+          'cta-button':'Get opportunities now',
+          'cta-note':'Join the BrightScale Pro list today'
+        },
+        pt:{
+          eyebrow:'Mais trabalhos. Menos concorrência. Zero mensalidade.',
+          'nav-cta':'Quero ser Pro',
+          'hero-title':'A BrightScale conecta você a homeowners prontos para contratar',
+          'hero-copy':'Um modelo de leilão inteligente que valoriza seu serviço, não quem paga mais.',
+          'hero-bullets':'👉 Receba oportunidades reais<br>👉 Dê seu preço com total transparência<br>👉 Ganhe trabalhos com mais margem e menos disputa',
+          'hero-cta':'Quero receber leads qualificados',
+          'hero-note':'Aplicação gratuita · Aprovação rápida',
+          'form-title':'Candidate-se ao BrightScale Pro',
+          'form-subtitle':'Conte sobre seus serviços e entraremos em contato.',
+          'service-label':'Que tipo de serviços você oferece?',
+          'service-default':'Selecione um serviço',
+          'service-other':'Outro',
+          'zip-label':'CEP',
+          'timing-label':'Quando você pode iniciar?',
+          'timing-default':'Escolha',
+          'timing-now':'Imediatamente',
+          'timing-1-2':'Em 1–2 semanas',
+          'timing-month':'Em um mês',
+          'timing-plan':'Apenas pesquisando',
+          'details-label':'Conte sobre sua empresa',
+          'name-label':'Seu nome',
+          'email-label':'Email',
+          'phone-label':'Telefone',
+          'contact-label':'Forma de contato preferida',
+          'contact-default':'Selecione',
+          'contact-phone':'Ligação',
+          'contact-text':'Mensagem de texto',
+          'contact-email':'Email',
+          'submit':'Enviar minha solicitação',
+          'problem-title':'Cansado de pagar caro só para ser visto?',
+          'problem-copy':'Se você já usou marketplaces tradicionais, sabe como funciona:',
+          'problem-list':'❌ Mensalidades altas, mesmo sem fechar contratos<br>❌ Leads frios, curiosos ou sem orçamento<br>❌ Concorrência injusta com empresas gigantes<br>❌ Você paga para aparecer, não para fechar',
+          'problem-close':'No fim, quem ganha não é o melhor profissional — é quem tem mais dinheiro para anúncios.',
+          'solution-title':'Um marketplace feito para profissionais sérios',
+          'solution-copy':'Aqui o homeowner define escopo e prazo. Você escolhe se quer competir — com total controle.',
+          'benefit-1':'Zero mensalidade',
+          'benefit-2':'Você só participa quando quiser',
+          'benefit-3':'Leads qualificados e verificados',
+          'benefit-4':'Menos concorrência por projeto',
+          'benefit-5':'Mais controle de preço e margem',
+          'benefit-6':'Reputação que gera vantagem',
+          'benefit-7':'Suporte quando precisar',
+          'steps-title':'Como funciona o leilão BrightScale',
+          'step-1':'<strong>O homeowner cria o projeto.</strong> Escopo, orçamento e prazo.',
+          'step-2':'<strong>Apenas Local Pros qualificados participam.</strong> Menos ruído, mais chance real.',
+          'step-3':'<strong>Você envia sua proposta.</strong> Preço, prazo e diferenciais.',
+          'step-4':'<strong>O homeowner escolhe a melhor proposta.</strong> Não é só o menor preço.',
+          'compare-title':'Por que o modelo de leilão é melhor',
+          'compare-1':'Visibilidade igual para todos',
+          'compare-2':'Número limitado de participantes',
+          'compare-3':'Você define seu preço com clareza',
+          'compare-4':'Maior intenção, melhor taxa de fechamento',
+          'compare-note':'Resultado: menos propostas, mais contratos.',
+          'who-title':'Para quem é a BrightScale Pro',
+          'who-list':'✔️ Profissionais locais<br>✔️ Contractors independentes<br>✔️ Pequenas e médias empresas de serviço<br>✔️ Quem busca crescimento sustentável',
+          'who-note':'Se você entrega um bom serviço, a BrightScale trabalha a seu favor.',
+          'proof-title':'Resultados reais de profissionais locais',
+          'proof-quote':'“Em outros apps eu pagava todo mês e quase não fechava nada. Na BrightScale, fechei meu primeiro projeto na primeira semana.”',
+          'proof-author':'— Contractor Local',
+          'cta-title':'Pronto para receber projetos que fazem sentido?',
+          'cta-button':'Quero receber oportunidades agora',
+          'cta-note':'Entre para a lista BrightScale Pro hoje'
+        },
+        es:{
+          eyebrow:'Más trabajos. Menos competencia. Cero mensualidad.',
+          'nav-cta':'Quiero ser Pro',
+          'hero-title':'BrightScale te conecta con homeowners listos para contratar',
+          'hero-copy':'Un modelo de subasta inteligente que valora tu servicio, no a quien paga más.',
+          'hero-bullets':'👉 Recibe oportunidades reales<br>👉 Fija tu precio con total transparencia<br>👉 Gana trabajos con mejor margen y menos competencia',
+          'hero-cta':'Quiero leads calificados',
+          'hero-note':'Solicitud gratuita · Aprobación rápida',
+          'form-title':'Postula a BrightScale Pro',
+          'form-subtitle':'Cuéntanos sobre tus servicios y te contactaremos.',
+          'service-label':'¿Qué tipo de servicios ofreces?',
+          'service-default':'Selecciona un servicio',
+          'service-other':'Otro',
+          'zip-label':'Código postal',
+          'timing-label':'¿Cuándo puedes iniciar?',
+          'timing-default':'Elige',
+          'timing-now':'De inmediato',
+          'timing-1-2':'En 1–2 semanas',
+          'timing-month':'En un mes',
+          'timing-plan':'Solo explorando',
+          'details-label':'Cuéntanos sobre tu negocio',
+          'name-label':'Tu nombre',
+          'email-label':'Correo electrónico',
+          'phone-label':'Teléfono',
+          'contact-label':'Método de contacto preferido',
+          'contact-default':'Selecciona',
+          'contact-phone':'Llamada',
+          'contact-text':'Mensaje de texto',
+          'contact-email':'Correo electrónico',
+          'submit':'Enviar solicitud',
+          'problem-title':'¿Cansado de pagar caro solo para ser visible?',
+          'problem-copy':'Si ya usaste marketplaces tradicionales, conoces la historia:',
+          'problem-list':'❌ Mensualidades altas, incluso sin cerrar contratos<br>❌ Leads fríos o sin presupuesto<br>❌ Competencia injusta con empresas grandes<br>❌ Pagas por aparecer, no por cerrar',
+          'problem-close':'Al final, no gana el mejor profesional — gana quien tiene más presupuesto para anuncios.',
+          'solution-title':'Un marketplace hecho para profesionales serios',
+          'solution-copy':'Aquí el homeowner define alcance y plazos. Tú decides si competir — con control total.',
+          'benefit-1':'Cero mensualidad',
+          'benefit-2':'Participas solo cuando quieres',
+          'benefit-3':'Leads calificados y verificados',
+          'benefit-4':'Menos competencia por proyecto',
+          'benefit-5':'Más control de precio y margen',
+          'benefit-6':'Reputación que da ventaja',
+          'benefit-7':'Soporte cuando lo necesites',
+          'steps-title':'Cómo funciona la subasta BrightScale',
+          'step-1':'<strong>El homeowner crea el proyecto.</strong> Alcance, presupuesto y plazo.',
+          'step-2':'<strong>Solo participan pros locales calificados.</strong> Menos ruido, más oportunidades reales.',
+          'step-3':'<strong>Envías tu propuesta.</strong> Precio, plazo y diferenciales.',
+          'step-4':'<strong>El homeowner elige la mejor propuesta.</strong> No solo el precio más bajo.',
+          'compare-title':'Por qué el modelo de subasta es mejor',
+          'compare-1':'Visibilidad igual para todos',
+          'compare-2':'Participantes limitados por proyecto',
+          'compare-3':'Defines tu precio con claridad',
+          'compare-4':'Mayor intención, mejor tasa de cierre',
+          'compare-note':'Resultado: menos propuestas, más contratos.',
+          'who-title':'Para quién es BrightScale Pro',
+          'who-list':'✔️ Profesionales locales<br>✔️ Contractors independientes<br>✔️ Pequeñas y medianas empresas de servicio<br>✔️ Quienes buscan crecimiento sostenible',
+          'who-note':'Si entregas un buen servicio, BrightScale trabaja a tu favor.',
+          'proof-title':'Resultados reales de pros locales',
+          'proof-quote':'“En otras apps pagaba cada mes y casi no cerraba nada. Con BrightScale, cerré mi primer proyecto en la primera semana.”',
+          'proof-author':'— Contractor Local',
+          'cta-title':'¿Listo para proyectos que valen la pena?',
+          'cta-button':'Quiero oportunidades ahora',
+          'cta-note':'Únete a la lista BrightScale Pro hoy'
+        }
+      };
+
+      const toggles=[...document.querySelectorAll('.language-toggle')];
+      if(!toggles.length) return;
+      const apply=(lang)=>{
+        const dict=translations[lang] || translations.en;
+        document.querySelectorAll('[data-i18n]').forEach((node)=>{
+          const key=node.getAttribute('data-i18n');
+          const value=dict[key];
+          if(!value) return;
+          if(value.includes('<')){
+            node.innerHTML=value;
+          }else{
+            node.textContent=value;
+          }
+        });
+        toggles.forEach((btn)=>btn.classList.toggle('is-active',btn.dataset.lang===lang));
+      };
+      toggles.forEach((btn)=>{
+        btn.addEventListener('click',()=>apply(btn.dataset.lang));
+      });
+      apply('en');
+    })();
+  </script>
+</body>
+</html>
