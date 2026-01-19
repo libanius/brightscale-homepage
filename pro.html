@@ -7,15 +7,29 @@
   <meta name="description" content="Join BrightScale Pro to get more local jobs, fast payouts, and steady demand across South Florida." />
   <meta name="robots" content="index, follow" />
 
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrightScale" />
+  <meta property="og:title" content="BrightScale Pro | Grow Your Business" />
+  <meta property="og:description" content="Join BrightScale Pro to get more local jobs, fast payouts, and steady demand across South Florida." />
+  <meta property="og:url" content="https://www.brightscalegroup.com/pro.html" />
+  <meta property="og:image" content="/assets/og/Open%20Graph.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BrightScale Pro | Grow Your Business" />
+  <meta name="twitter:description" content="Join BrightScale Pro to get more local jobs, fast payouts, and steady demand across South Florida." />
+  <meta name="twitter:image" content="/assets/og/Open%20Graph.jpg" />
+  <meta name="twitter:site" content="https://www.brightscalegroup.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="/assets/favicons/favicon.svg?v=2" type="image/svg+xml">
-  <link rel="alternate icon" href="/assets/favicons/favicon.ico?v=2">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=2">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=2">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=2">
-  <link rel="manifest" href="/assets/favicons/site.webmanifest?v=2">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script type="application/ld+json">
@@ -116,25 +130,29 @@
       justify-content:center;
       padding:10px 18px;
       border-radius:999px;
-      background:transparent;
-      color:#2b2b2b;
+      background:#22c55e;
+      color:#ffffff;
       font-weight:700;
       transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
 
-    .nav-cta:hover{color:#1f2328;transform:translateY(-1px)}
+    .nav-cta:hover{
+      color:#ffffff;
+      background:#16a34a;
+      transform:translateY(-1px);
+    }
 
     .language-toggle{
       background:transparent;
       border:none;
-      color:inherit;
+      color:var(--muted);
       font:inherit;
       cursor:pointer;
       padding:0;
     }
 
     .language-toggle.is-active{
-      color:#fff;
+      color:var(--accent-strong);
       text-decoration:underline;
       text-underline-offset:6px;
     }
@@ -157,40 +175,61 @@
 
     p{color:var(--muted)}
 
-    .hero{margin-top:10px}
+    .hero{
+      margin-top:10px;
+      padding-top:96px;
+      padding-bottom:32px;
+    }
+
+    .hero-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .hero-language{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-size:.75rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
 
     .hero-inner{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:28px;
-      box-shadow:var(--shadow);
+      background:linear-gradient(120deg,#ffffff 0%,#f6f6f3 45%,#eff4f1 100%);
+      border:1px solid #e2e8f0;
+      border-radius:24px;
+      padding:32px;
+      box-shadow:0 20px 60px rgba(15,23,42,.08);
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:24px;
+      grid-template-columns:1.1fr .9fr;
+      gap:32px;
       align-items:stretch;
     }
 
     .hero-visual{
       position:relative;
-      border-radius:18px;
+      border-radius:22px;
       overflow:hidden;
       border:1px solid var(--border);
-      background:linear-gradient(135deg,#f1f7f2,#f7f3ea);
+      background:linear-gradient(140deg,#0f1512 0%,#1d2a24 60%,#24342d 100%);
       min-height:420px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+      display:block;
+      padding:0;
     }
 
     .hero-visual img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:cover;
+      object-position:50% 20%;
       display:block;
     }
 
@@ -219,11 +258,14 @@
       align-items:center;
       gap:8px;
       padding:6px 10px;
-      background:#ecfdf3;
-      color:var(--accent-strong);
+      background:transparent;
+      color:#1f2933;
       border-radius:999px;
+      border:1px solid var(--border);
       font-weight:700;
-      font-size:.85rem;
+      font-size:.7rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
       width:fit-content;
     }
 
@@ -260,6 +302,34 @@
       font-size:.9rem;
       color:var(--muted);
     }
+
+    .hero-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:8px;
+      color:var(--muted);
+    }
+
+    .hero-list li{
+      position:relative;
+      padding-left:18px;
+      line-height:1.4;
+    }
+
+    .hero-list li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.55em;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 3px rgba(34,197,94,.18);
+    }
+
 
     .hero-side{
       display:flex;
@@ -450,12 +520,14 @@
         backdrop-filter:none;
       }
       .hero-visual{min-height:320px}
+      .hero-visual img{object-position:50% 10%}
       .hero-side{order:2}
     }
 
     @media (max-width:720px){
       .row{grid-template-columns:1fr}
       .hero-inner{padding:22px}
+      .hero-visual img{object-position:50% 6%}
       .hero-side{order:2}
       .form-card{order:2}
       .nav-cta{padding:10px 14px}
@@ -469,7 +541,6 @@
         <img class="logo-img" src="/assets/images/logo-brightscale.svg" alt="BrightScale" />
       </a>
       <div class="nav-links">
-        <a class="nav-link" href="#demand">Services</a>
         <a class="nav-link" href="https://app.brightscalegroup.com">Log in</a>
         <a class="nav-cta" href="https://app.brightscalegroup.com" data-i18n="nav-cta">Apply as a Pro</a>
       </div>
@@ -477,44 +548,32 @@
   </header>
 
   <main>
-    <section class="relative z-0 min-h-screen w-full overflow-hidden !mt-0">
-      <img
-        src="/assets/images/hero-pro.png"
-        alt="Professional contractor reviewing a project on a tablet"
-        class="absolute inset-0 h-full w-full object-cover object-[70%_center] sm:object-center"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/60"></div>
-
-      <div class="relative z-10 flex min-h-screen items-center px-6 sm:px-10 lg:px-16">
-        <div class="max-w-3xl">
-          <div class="mb-5 flex flex-wrap items-center gap-10">
-            <p class="text-xs uppercase tracking-[0.3em] text-white/80" data-i18n="eyebrow">More jobs. Less competition. Zero monthly fee.</p>
-            <div class="flex items-center gap-8 text-xs uppercase tracking-[0.25em] text-white/80">
-              <button type="button" class="language-toggle" data-lang="en">EN</button>
-              <button type="button" class="language-toggle" data-lang="pt">PT</button>
-              <button type="button" class="language-toggle" data-lang="es">ES</button>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-header">
+              <span class="hero-eyebrow" data-i18n="eyebrow">More jobs. Less competition. Zero monthly fee.</span>
+              <div class="hero-language">
+                <button type="button" class="language-toggle" data-lang="en">EN</button>
+                <button type="button" class="language-toggle" data-lang="pt">PT</button>
+                <button type="button" class="language-toggle" data-lang="es">ES</button>
+              </div>
+            </div>
+            <h1 data-i18n="hero-title">BrightScale connects you to homeowners ready to hire</h1>
+            <p data-i18n="hero-copy">A smart auction model that values your service quality, not who pays the most.</p>
+            <ul class="hero-list" data-i18n="hero-bullets">
+              <li>Qualified homeowners with verified scope</li>
+              <li>Limited competitors per project</li>
+              <li>Total control of price and margin</li>
+            </ul>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://app.brightscalegroup.com" data-i18n="hero-cta">Get qualified leads</a>
+              <span class="microline" data-i18n="hero-note">Free to apply · Quick approval</span>
             </div>
           </div>
-          <h1 class="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl" data-i18n="hero-title">
-            BrightScale connects you to homeowners ready to hire
-          </h1>
-          <p class="mt-5 text-lg text-white/85 sm:text-xl" data-i18n="hero-copy">
-            A smart auction model that values your service quality, not who pays the most.
-          </p>
-          <div class="mt-5 text-sm text-white/80" data-i18n="hero-bullets">
-            👉 Receive real opportunities<br>
-            👉 Set your price with total transparency<br>
-            👉 Win work with better margins and less bidding
-          </div>
-          <div class="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              class="inline-flex items-center justify-center rounded-full bg-[#22c55e] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#16a34a] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-              href="https://app.brightscalegroup.com"
-              data-i18n="hero-cta"
-            >
-              Get qualified leads
-            </a>
-            <span class="text-sm text-white/75" data-i18n="hero-note">Free to apply · Quick approval</span>
+          <div class="hero-visual">
+            <img src="/assets/images/hero-pro.png" alt="Professional contractor reviewing a project on a tablet" />
           </div>
         </div>
       </div>
@@ -621,11 +680,11 @@
     (function(){
       const translations={
         en:{
-          eyebrow:'More jobs. Less competition. Zero monthly fee.',
+          eyebrow:'BrightScale Pro Network',
           'nav-cta':'Apply as a Pro',
-          'hero-title':'BrightScale connects you to homeowners ready to hire',
-          'hero-copy':'A smart auction model that values your service quality, not who pays the most.',
-          'hero-bullets':'👉 Receive real opportunities<br>👉 Set your price with total transparency<br>👉 Win work with better margins and less bidding',
+          'hero-title':'A refined marketplace for premium home-service pros',
+          'hero-copy':'Win the right projects without noise, bidding wars, or monthly fees.',
+          'hero-bullets':'<li>Qualified homeowners with verified scope</li><li>Limited competitors per project</li><li>Total control of price and margin</li>',
           'hero-cta':'Get qualified leads',
           'hero-note':'Free to apply · Quick approval',
           'form-title':'Apply to BrightScale Pro',
@@ -685,11 +744,11 @@
           'cta-note':'Join the BrightScale Pro list today'
         },
         pt:{
-          eyebrow:'Mais trabalhos. Menos concorrência. Zero mensalidade.',
+          eyebrow:'Rede BrightScale Pro',
           'nav-cta':'Quero ser Pro',
-          'hero-title':'A BrightScale conecta você a homeowners prontos para contratar',
-          'hero-copy':'Um modelo de leilão inteligente que valoriza seu serviço, não quem paga mais.',
-          'hero-bullets':'👉 Receba oportunidades reais<br>👉 Dê seu preço com total transparência<br>👉 Ganhe trabalhos com mais margem e menos disputa',
+          'hero-title':'Um marketplace refinado para profissionais premium',
+          'hero-copy':'Feche os projetos certos sem ruído, guerra de lances ou mensalidade.',
+          'hero-bullets':'<li>Homeowners qualificados com escopo verificado</li><li>Concorrência limitada por projeto</li><li>Controle total de preço e margem</li>',
           'hero-cta':'Quero receber leads qualificados',
           'hero-note':'Aplicação gratuita · Aprovação rápida',
           'form-title':'Candidate-se ao BrightScale Pro',
@@ -749,11 +808,11 @@
           'cta-note':'Entre para a lista BrightScale Pro hoje'
         },
         es:{
-          eyebrow:'Más trabajos. Menos competencia. Cero mensualidad.',
+          eyebrow:'Red BrightScale Pro',
           'nav-cta':'Quiero ser Pro',
-          'hero-title':'BrightScale te conecta con homeowners listos para contratar',
-          'hero-copy':'Un modelo de subasta inteligente que valora tu servicio, no a quien paga más.',
-          'hero-bullets':'👉 Recibe oportunidades reales<br>👉 Fija tu precio con total transparencia<br>👉 Gana trabajos con mejor margen y menos competencia',
+          'hero-title':'Un marketplace refinado para profesionales premium',
+          'hero-copy':'Cierra los proyectos correctos sin ruido, guerras de pujas ni mensualidad.',
+          'hero-bullets':'<li>Homeowners calificados con alcance verificado</li><li>Competencia limitada por proyecto</li><li>Control total de precio y margen</li>',
           'hero-cta':'Quiero leads calificados',
           'hero-note':'Solicitud gratuita · Aprobación rápida',
           'form-title':'Postula a BrightScale Pro',
