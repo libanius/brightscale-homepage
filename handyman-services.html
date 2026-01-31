@@ -690,6 +690,13 @@
             body:JSON.stringify(payload)
           });
           if(!res.ok) throw new Error('Request failed');
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'conversion', {
+              send_to: 'AW-17876699806',
+              value: 1.0,
+              currency: 'USD'
+            });
+          }
           setMessage('Request sent! We will reach out soon.');
           form.reset();
         }catch(err){
