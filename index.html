@@ -1024,6 +1024,14 @@
     const message=document.getElementById('form-message');
     const endpoint='https://xgjaseswwhhjwfvuqcvo.supabase.co/functions/v1/public-lead-intake';
     if(!form) return;
+    if (window.location.search.includes('mockLead=1')) {
+      window.gtag = typeof window.gtag === 'function' ? window.gtag : (...args)=>console.log('gtag mock', ...args);
+      const originalFetch = window.fetch;
+      window.fetch = async (...args)=>{
+        if (args[0] === endpoint) return { ok: true };
+        return originalFetch(...args);
+      };
+    }
     const setMessage=(text,isError=false)=>{
       if(!message) return;
       message.textContent=text;
