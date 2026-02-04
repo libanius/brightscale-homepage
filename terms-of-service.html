@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ9TNGMJRE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RZ9TNGMJRE');
+</script>
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17876699806"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -305,7 +313,7 @@
     </a>
     <nav class="menu">
       <a href="/">Home</a>
-      <a href="https://app.brightscalegroup.com" class="pro">Pro</a>
+      <a href="https://app.brightscalegroup.com" class="pro" data-ga4="pro_login">Pro</a>
       <details class="dropdown">
         <summary aria-label="Menu">
           <svg class="burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -419,5 +427,23 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    const handler=(event)=>{
+      const target=event.target.closest('[data-ga4]');
+      if(!target) return;
+      if(typeof window.gtag !== 'function') return;
+      const type=target.getAttribute('data-ga4');
+      if(type === 'get_quote'){
+        window.gtag('event', 'cta_click', { label: 'get_quote' });
+        return;
+      }
+      if(type === 'pro_login'){
+        window.gtag('event', 'pro_login_click');
+      }
+    };
+    document.addEventListener('click', handler);
+  })();
+</script>
 </body>
 </html>

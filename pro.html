@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ9TNGMJRE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RZ9TNGMJRE');
+</script>
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17876699806"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -568,8 +576,8 @@
         <img class="logo-img" src="/assets/images/logo-brightscale.svg" alt="BrightScale" />
       </a>
       <div class="nav-links">
-        <a class="nav-link" href="https://app.brightscalegroup.com">Log in</a>
-        <a class="nav-cta" href="https://app.brightscalegroup.com" data-i18n="nav-cta">Apply PRO</a>
+        <a class="nav-link" href="https://app.brightscalegroup.com" data-ga4="pro_login">Log in</a>
+        <a class="nav-cta" href="https://app.brightscalegroup.com" data-i18n="nav-cta" data-ga4="pro_login">Apply PRO</a>
       </div>
     </nav>
   </header>
@@ -595,7 +603,7 @@
               <li>Total control of price and margin</li>
             </ul>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="https://app.brightscalegroup.com" data-i18n="hero-cta">Get qualified leads</a>
+              <a class="btn btn-primary" href="https://app.brightscalegroup.com" data-i18n="hero-cta" data-ga4="pro_login">Get qualified leads</a>
               <span class="microline" data-i18n="hero-note">Free to apply · Quick approval</span>
             </div>
           </div>
@@ -687,7 +695,7 @@
     <section>
       <div class="container final-cta">
         <h2 data-i18n="cta-title">Ready for projects that make sense?</h2>
-        <a class="btn btn-primary" href="https://app.brightscalegroup.com" data-i18n="cta-button">Get opportunities now</a>
+        <a class="btn btn-primary" href="https://app.brightscalegroup.com" data-i18n="cta-button" data-ga4="pro_login">Get opportunities now</a>
         <span class="microline" data-i18n="cta-note">Join the BrightScale Pro list today</span>
       </div>
     </section>
@@ -922,5 +930,23 @@
       apply('en');
     })();
   </script>
+<script>
+  (function(){
+    const handler=(event)=>{
+      const target=event.target.closest('[data-ga4]');
+      if(!target) return;
+      if(typeof window.gtag !== 'function') return;
+      const type=target.getAttribute('data-ga4');
+      if(type === 'get_quote'){
+        window.gtag('event', 'cta_click', { label: 'get_quote' });
+        return;
+      }
+      if(type === 'pro_login'){
+        window.gtag('event', 'pro_login_click');
+      }
+    };
+    document.addEventListener('click', handler);
+  })();
+</script>
 </body>
 </html>
