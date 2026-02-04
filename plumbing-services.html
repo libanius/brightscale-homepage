@@ -16,6 +16,8 @@
   <meta name="description" content="Professional plumbing services near you. Request repairs, installations, and inspections with BrightScale." />
   <meta name="robots" content="index, follow" />
 
+  <link rel="canonical" href="https://www.brightscalegroup.com/plumbing-services.html" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BrightScale" />
   <meta property="og:title" content="Plumbing Services | BrightScale" />
@@ -47,12 +49,16 @@
       "@type": "Service",
       "name": "Plumbing Services",
       "provider": {
-        "@type": "Organization",
-        "name": "BrightScale",
-        "legalName": "BrightScale Group LLC"
+        "@type": "LocalBusiness",
+        "@id": "https://www.brightscalegroup.com/#localbusiness",
+        "name": "BrightScale Group"
       },
       "serviceType": "Plumbing services",
-      "areaServed": "South Florida",
+      "url": "https://www.brightscalegroup.com/plumbing-services.html",
+      "areaServed": {
+        "@type": "Place",
+        "name": "South Florida, US"
+      },
       "description": "Connect with local plumbers for repairs, installations, and inspections."
     }
   </script>
@@ -324,18 +330,33 @@
       gap:12px;
     }
 
-    button[type="submit"]{
-      border:none;
+    button[type="submit"].submit-request-btn{
+      margin-top:12px;
+      width:auto;
+      min-width:220px;
+      align-self:flex-start;
+      border:1px solid var(--accent);
       background:var(--accent);
       color:#fff;
       font-weight:700;
+      letter-spacing:0;
       border-radius:12px;
-      padding:12px 16px;
+      padding:13px 18px;
       cursor:pointer;
       transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+      box-shadow:0 8px 16px rgba(34,197,94,.2);
     }
 
-    button[type="submit"]:hover{background:var(--accent-strong);transform:translateY(-1px)}
+    button[type="submit"].submit-request-btn:hover{
+      background:var(--accent-strong);
+      transform:none;
+      box-shadow:0 8px 16px rgba(22,163,74,.24);
+    }
+
+    button[type="submit"].submit-request-btn:focus-visible{
+      outline:3px solid rgba(34,197,94,.35);
+      outline-offset:2px;
+    }
 
     .form-message{
       font-size:.95rem;
@@ -586,7 +607,7 @@
             </div>
 
             <input type="hidden" name="source" value="brightscale_plumbing_landing" />
-            <button type="submit">Submit my request</button>
+            <button type="submit" class="submit-request-btn">Submit my request</button>
             <p class="form-message" id="form-message" aria-live="polite"></p>
           </form>
         </div>

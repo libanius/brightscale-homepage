@@ -17,6 +17,8 @@
   <meta name="description" content="Connect with local home service professionals in South Florida. Compare quotes and hire with confidence." />
   <meta name="robots" content="index, follow" />
 
+  <link rel="canonical" href="https://www.brightscalegroup.com/" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="BrightScale" />
   <meta property="og:title" content="BrightScale – Hire Local Home Professionals in South Florida" />
@@ -31,6 +33,22 @@
   <meta name="twitter:description" content="Connect with local home service professionals in South Florida. Compare quotes and hire with confidence." />
   <meta name="twitter:image" content="/assets/og/Open%20Graph.jpg" />
   <meta name="twitter:site" content="https://www.brightscalegroup.com" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.brightscalegroup.com/#localbusiness",
+      "name": "BrightScale Group",
+      "legalName": "BrightScale Group LLC",
+      "url": "https://www.brightscalegroup.com/",
+      "email": "contact@brightscalegroup.com",
+      "areaServed": {
+        "@type": "Place",
+        "name": "South Florida, US"
+      }
+    }
+  </script>
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -389,6 +407,30 @@
     }
 
     button:hover{background:var(--accent-strong);transform:translateY(-1px)}
+
+    #project-form .submit-request-btn{
+      margin-top:16px;
+      width:auto;
+      min-width:220px;
+      align-self:flex-start;
+      border:1px solid var(--accent);
+      border-radius:12px;
+      padding:13px 18px;
+      background:var(--accent);
+      font-weight:700;
+      letter-spacing:0;
+      box-shadow:0 8px 16px rgba(34,197,94,.2);
+    }
+
+    #project-form .submit-request-btn:hover{
+      background:var(--accent-strong);
+      transform:none;
+    }
+
+    #project-form .submit-request-btn:focus-visible{
+      outline:3px solid rgba(34,197,94,.35);
+      outline-offset:2px;
+    }
 
     .form-message{
       margin-top:6px;
@@ -792,7 +834,7 @@
       </div>
 
       <input type="hidden" name="source" value="brightscale_homeowner_landing" />
-      <button type="submit">Submit my request</button>
+      <button type="submit" class="submit-request-btn">Submit my request</button>
       <p class="form-message" id="form-message" aria-live="polite"></p>
     </form>
   </section>
@@ -1024,11 +1066,14 @@
     const message=document.getElementById('form-message');
     const endpoint='https://xgjaseswwhhjwfvuqcvo.supabase.co/functions/v1/public-lead-intake';
     if(!form) return;
-    if (window.location.search.includes('mockLead=1')) {
+    if (window.location.search.includes('mockLead=1') || window.location.search.includes('mockLead=fail')) {
       window.gtag = typeof window.gtag === 'function' ? window.gtag : (...args)=>console.log('gtag mock', ...args);
       const originalFetch = window.fetch;
       window.fetch = async (...args)=>{
-        if (args[0] === endpoint) return { ok: true };
+        if (args[0] === endpoint) {
+          if (window.location.search.includes('mockLead=fail')) return { ok: false };
+          return { ok: true };
+        }
         return originalFetch(...args);
       };
     }
