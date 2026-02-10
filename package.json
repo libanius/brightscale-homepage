@@ -1,0 +1,7 @@
+{
+  "name": "brightscale-site",
+  "private": true,
+  "scripts": {
+    "indexnow:submit": "node scripts/indexnow-submit.mjs"
+  }
+}
