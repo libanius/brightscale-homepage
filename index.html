@@ -88,6 +88,23 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    (function(f,b,e,v,n,t,s){
+      if(f.fbq) return;
+      n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
+      if(!f._fbq) f._fbq=n;
+      n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+      t=b.createElement(e); t.async=!0; t.src=v;
+      s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+    })(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1439659704362687');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1439659704362687&ev=PageView&noscript=1"/>
+  </noscript>
 
   <style>
     :root{
@@ -1079,6 +1096,68 @@
 </div>
 
 <script>
+  const ATTR_KEYS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"];
+  const ATTR_STORAGE_KEY = "bs_attr_v1";
+  const ATTR_TTL_DAYS = 30;
+  function nowMs(){ return Date.now(); }
+  function readQueryParams(){
+    const qs = new URLSearchParams(window.location.search);
+    const data = {};
+    for (const key of ATTR_KEYS) {
+      const value = qs.get(key);
+      if (value) data[key] = value;
+    }
+    return data;
+  }
+  function loadAttribution(){
+    try{
+      const raw = localStorage.getItem(ATTR_STORAGE_KEY);
+      if(!raw) return null;
+      const parsed = JSON.parse(raw);
+      if(!parsed || typeof parsed !== 'object') return null;
+      const expiresAt = Number(parsed.expiresAt || 0);
+      if(!expiresAt || nowMs() > expiresAt){
+        localStorage.removeItem(ATTR_STORAGE_KEY);
+        return null;
+      }
+      const data = parsed.data && typeof parsed.data === 'object' ? parsed.data : {};
+      return data;
+    }catch(_err){
+      return null;
+    }
+  }
+  function saveAttribution(newData){
+    if(!newData || typeof newData !== 'object') return;
+    const current = loadAttribution() || {};
+    const merged = { ...current };
+    for (const key of ATTR_KEYS) {
+      if (newData[key]) merged[key] = newData[key];
+    }
+    if (!Object.keys(merged).length) return;
+    const expiresAt = nowMs() + ATTR_TTL_DAYS * 24 * 60 * 60 * 1000;
+    localStorage.setItem(ATTR_STORAGE_KEY, JSON.stringify({ data: merged, expiresAt }));
+  }
+  saveAttribution(readQueryParams());
+  function getAttributionForSubmit(){ return loadAttribution() || {}; }
+
+  function getOrCreateEventId(){
+    const key="bs_lead_event_id_v1";
+    const existing=sessionStorage.getItem(key);
+    if(existing) return existing;
+    const arr=new Uint8Array(16); crypto.getRandomValues(arr);
+    const id=[...arr].map(b=>b.toString(16).padStart(2,"0")).join("");
+    sessionStorage.setItem(key,id);
+    return id;
+  }
+
+  function toSlug(value){
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
   (function(){
     const row=document.querySelector('.icon-row');
     const left=document.querySelector('.icon-arrow.left');
@@ -1115,6 +1194,8 @@
       event.preventDefault();
       setMessage('');
       const payload=Object.fromEntries(new FormData(form).entries());
+      payload.attribution = getAttributionForSubmit();
+      payload.event_id = getOrCreateEventId();
       try{
         const res=await fetch(endpoint,{
           method:'POST',
@@ -1122,6 +1203,15 @@
           body:JSON.stringify(payload)
         });
         if(!res.ok) throw new Error('Request failed');
+        let leadId = '';
+        try{
+          const data = await res.json();
+          if (data && typeof data.lead_id === 'string') leadId = data.lead_id;
+        }catch(_err){
+          leadId = '';
+        }
+        const serviceCategory = toSlug(payload.service_type);
+        const market = toSlug(payload.zip);
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'conversion', {
             send_to: 'AW-17876699806',
@@ -1132,8 +1222,12 @@
               page_location: window.location.href
             });
         }
-        setMessage('Request sent! We will reach out soon.');
-        form.reset();
+        const url = new URL("/thank-you.html", window.location.origin);
+        url.searchParams.set("event_id", payload.event_id);
+        if(leadId) url.searchParams.set("lead_id", leadId);
+        if(serviceCategory) url.searchParams.set("service_category", serviceCategory);
+        if(market) url.searchParams.set("market", market);
+        window.location.assign(url.toString());
       }catch(err){
         setMessage('Could not send your request. Please try again.',true);
         console.error(err);

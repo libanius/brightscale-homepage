@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You | BrightScale</title>
+  <meta name="description" content="Thank you for your request. BrightScale will follow up shortly." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://www.brightscalegroup.com/thank-you.html" />
+  <script>
+    (function(f,b,e,v,n,t,s){
+      if(f.fbq) return;
+      n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
+      if(!f._fbq) f._fbq=n;
+      n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+      t=b.createElement(e); t.async=!0; t.src=v;
+      s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+    })(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1439659704362687');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1439659704362687&ev=PageView&noscript=1"/>
+  </noscript>
+  <style>
+    :root{
+      --bg:#f7f8f9;
+      --card:#ffffff;
+      --text:#1f2328;
+      --muted:#60656f;
+      --accent:#22c55e;
+      --border:#e7e9ee;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      font-family:Montserrat,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .card{
+      width:min(100%,680px);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:28px;
+      text-align:center;
+    }
+    h1{margin:0 0 10px;font-size:2rem}
+    p{margin:0 0 20px;color:var(--muted)}
+    a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 18px;
+      border-radius:999px;
+      border:1px solid var(--accent);
+      background:var(--accent);
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Thank You</h1>
+    <p>Your request was received. Our team will contact you soon.</p>
+    <a href="/">Back to Home</a>
+  </main>
+
+  <script>
+    function getEventIdFromQSOrSession(){
+      const qs=new URLSearchParams(location.search);
+      const fromQs=qs.get("event_id");
+      const key="bs_lead_event_id_v1";
+      if(fromQs){ sessionStorage.setItem(key, fromQs); return fromQs; }
+      return sessionStorage.getItem(key);
+    }
+
+    const qs=new URLSearchParams(location.search);
+    const event_id=getEventIdFromQSOrSession();
+    const params={
+      user_type:"homeowner",
+      lead_id: qs.get("lead_id") || undefined,
+      service_category: qs.get("service_category") || undefined,
+      market: qs.get("market") || undefined
+    };
+
+    // prevent duplicate Lead on refresh in same session
+    const firedKey="bs_lead_fired_v1";
+    if(event_id && sessionStorage.getItem(firedKey) === event_id){
+      // already fired
+    } else {
+      if(window.fbq){
+        fbq('track','Lead', params, { eventID: event_id });
+        if(event_id) sessionStorage.setItem(firedKey, event_id);
+      }
+    }
+  </script>
+</body>
+</html>
