@@ -549,7 +549,11 @@
           <h2>Request Cleaning</h2>
           <p>Share a few details and we will follow up quickly.</p>
 
-          <form id="project-form" action="YOUR_ENDPOINT_HERE" method="POST">
+          <form id="project-form" action="https://formsubmit.co/contact@brightscalegroup.com" method="POST">
+      <input type="hidden" name="_subject" value="New Cleaning & Maid Services Lead | BrightScale" />
+      <input type="hidden" name="_next" value="https://www.brightscalegroup.com/thank-you.html" />
+      <input type="hidden" name="landing_page" value="cleaning-maid-services" />
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
             <div class="field">
               <label for="service_type">What type of cleaning do you need? <span aria-hidden="true">*</span></label>
               <select id="service_type" name="service_type" required>
@@ -697,44 +701,21 @@
 
   <script>
     (function(){
-      const form=document.getElementById('project-form');
-      const message=document.getElementById('form-message');
-      const endpoint='https://xgjaseswwhhjwfvuqcvo.supabase.co/functions/v1/public-lead-intake';
-      if(!form) return;
-      const setMessage=(text,isError=false)=>{
-        if(!message) return;
-        message.textContent=text;
-        message.classList.toggle('error',!!isError);
-      };
-      form.addEventListener('submit',async(event)=>{
-        event.preventDefault();
-        setMessage('');
-        const payload=Object.fromEntries(new FormData(form).entries());
-        try{
-          const res=await fetch(endpoint,{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify(payload)
-          });
-          if(!res.ok) throw new Error('Request failed');
-          if (typeof window.gtag === 'function') {
-            window.gtag('event', 'conversion', {
-              send_to: 'AW-17876699806',
-              value: 1.0,
-              currency: 'USD'
-            });
-            window.gtag('event', 'lead_submit', {
-              page_location: window.location.href
-            });
-          }
-          setMessage('Request sent! We will reach out soon.');
-          form.reset();
-        }catch(err){
-          setMessage('Could not send your request. Please try again.',true);
-          console.error(err);
-        }
-      });
-    })();
+    const form=document.getElementById('project-form');
+    if(!form) return;
+    form.addEventListener('submit',()=>{
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-17876699806',
+          value: 1.0,
+          currency: 'USD'
+        });
+        window.gtag('event', 'lead_submit', {
+          page_location: window.location.href
+        });
+      }
+    });
+  })();
   </script>
 <script>
   (function(){
