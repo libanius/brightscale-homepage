@@ -812,7 +812,11 @@
     <h2>Request free quotes</h2>
     <p>No obligation. Professionals may reach out if interested.</p>
 
-    <form id="project-form" action="YOUR_ENDPOINT_HERE" method="POST">
+    <form id="project-form" action="https://formsubmit.co/contact@brightscalegroup.com" method="POST">
+      <input type="hidden" name="_subject" value="New Homeowner Service Request | BrightScale" />
+      <input type="hidden" name="_next" value="https://www.brightscalegroup.com/thank-you.html" />
+      <input type="hidden" name="landing_page" value="homeowner-request" />
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
       <div class="field">
         <label for="service_type">What type of work do you need?</label>
         <select id="service_type" name="service_type" required>
@@ -1171,70 +1175,21 @@
   })();
 
   (function(){
-    const form=document.getElementById('project-form');
-    const message=document.getElementById('form-message');
-    const endpoint='https://xgjaseswwhhjwfvuqcvo.supabase.co/functions/v1/public-lead-intake';
-    if(!form) return;
-    if (window.location.search.includes('mockLead=1') || window.location.search.includes('mockLead=fail')) {
-      window.gtag = typeof window.gtag === 'function' ? window.gtag : (...args)=>console.log('gtag mock', ...args);
-      const originalFetch = window.fetch;
-      window.fetch = async (...args)=>{
-        if (args[0] === endpoint) {
-          if (window.location.search.includes('mockLead=fail')) return { ok: false };
-          return { ok: true };
-        }
-        return originalFetch(...args);
-      };
+  const form=document.getElementById('project-form');
+  if(!form) return;
+  form.addEventListener('submit',()=>{
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17876699806',
+        value: 1.0,
+        currency: 'USD'
+      });
+      window.gtag('event', 'lead_submit', {
+        page_location: window.location.href
+      });
     }
-    const setMessage=(text,isError=false)=>{
-      if(!message) return;
-      message.textContent=text;
-      message.classList.toggle('error',!!isError);
-    };
-    form.addEventListener('submit',async(event)=>{
-      event.preventDefault();
-      setMessage('');
-      const payload=Object.fromEntries(new FormData(form).entries());
-      payload.attribution = getAttributionForSubmit();
-      payload.event_id = getOrCreateEventId();
-      try{
-        const res=await fetch(endpoint,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(payload)
-        });
-        if(!res.ok) throw new Error('Request failed');
-        let leadId = '';
-        try{
-          const data = await res.json();
-          if (data && typeof data.lead_id === 'string') leadId = data.lead_id;
-        }catch(_err){
-          leadId = '';
-        }
-        const serviceCategory = toSlug(payload.service_type);
-        const market = toSlug(payload.zip);
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', 'conversion', {
-            send_to: 'AW-17876699806',
-            value: 1.0,
-            currency: 'USD'
-          });
-            window.gtag('event', 'lead_submit', {
-              page_location: window.location.href
-            });
-        }
-        const url = new URL("/thank-you.html", window.location.origin);
-        url.searchParams.set("event_id", payload.event_id);
-        if(leadId) url.searchParams.set("lead_id", leadId);
-        if(serviceCategory) url.searchParams.set("service_category", serviceCategory);
-        if(market) url.searchParams.set("market", market);
-        window.location.assign(url.toString());
-      }catch(err){
-        setMessage('Could not send your request. Please try again.',true);
-        console.error(err);
-      }
-    });
-  })();
+  });
+})();
 
   (function(){
     const banner=document.getElementById('cookie-banner');
