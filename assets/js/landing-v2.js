@@ -1,24 +1,26 @@
 (() => {
   const style = document.createElement('style');
   style.textContent = `
-    .bs-hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.03)}
-    .bs-story-video video,.bs-gallery video{width:100%;height:100%;object-fit:cover;display:block}
+    .bs-hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.03);background:#17130f url('/assets/images/wood-grain-hero-poster.jpg') center/cover no-repeat}
+    .bs-story-video{background:#17130f url('/assets/images/wood-grain-hatch-poster.jpg') center/cover no-repeat}
+    .bs-story-video video,.bs-gallery video{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
     .bs-story-row.is-visible .bs-story-video video{transform:scale(1.02)}
     .bs-story-video video{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-    .bs-detail-film{position:relative;min-height:78vh;display:grid;align-items:end;overflow:hidden;background:#17130f;color:#fff}
-    .bs-detail-film>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .bs-detail-film-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.18) 45%,rgba(0,0,0,.78))}
-    .bs-detail-film-copy{position:relative;z-index:2;padding-top:180px;padding-bottom:64px}
+    .bs-detail-film{position:relative;min-height:78vh;display:grid;align-items:end;overflow:hidden;background:#17130f url('/assets/images/wood-grain-detail-poster.jpg') center/cover no-repeat;color:#fff}
+    .bs-detail-film:before{content:"";position:absolute;inset:-18px;background:url('/assets/images/wood-grain-detail-poster.jpg') center/cover no-repeat;filter:blur(16px);transform:scale(1.04);opacity:.55}
+    .bs-detail-film>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:1;background:#17130f url('/assets/images/wood-grain-detail-poster.jpg') center/cover no-repeat}
+    .bs-detail-film-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.18) 45%,rgba(0,0,0,.78))}
+    .bs-detail-film-copy{position:relative;z-index:3;padding-top:180px;padding-bottom:64px}
     .bs-detail-film-copy h2{font-size:clamp(2.5rem,6vw,5.6rem);line-height:.95;letter-spacing:-.05em;max-width:850px;margin:16px 0}
-    .bs-detail-film-copy p{max-width:650px;color:rgba(255,255,255,.75);font-size:1.04rem}
+    .bs-detail-film-copy p{max-width:650px;color:rgba(255,255,255,.82);font-size:1.04rem;margin:18px 0 0}
     .bs-gallery video{transition:transform .5s ease}
     .bs-gallery figure:hover video{transform:scale(1.035)}
 
     /* Scroll expansion opening — vanilla adaptation of the supplied React concept */
-    .bs-hero.bs-expand-hero{--p:0;min-height:100dvh;height:100dvh;display:block;overflow:hidden;background:#17130f url('/assets/images/hero-painting.png') center/cover no-repeat;isolation:isolate}
+    .bs-hero.bs-expand-hero{--p:0;min-height:100dvh;height:100dvh;display:block;overflow:hidden;background:#17130f url('/assets/images/wood-grain-hero-poster.jpg') center/cover no-repeat;isolation:isolate}
     .bs-hero.bs-expand-hero:before{content:"";position:absolute;inset:0;z-index:0;background:rgba(0,0,0,calc(.18 + var(--p)*.18));opacity:calc(1 - var(--p)*.8);transition:opacity .06s linear}
     .bs-hero.bs-expand-hero:after{background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.22) 52%,rgba(0,0,0,.58));z-index:2;pointer-events:none}
-    .bs-hero.bs-expand-hero .bs-hero-video{z-index:1;inset:auto;left:50%;top:50%;width:calc(300px + var(--p) * (min(95vw,1550px) - 300px));height:calc(400px + var(--p) * (min(85vh,800px) - 400px));max-width:95vw;max-height:85vh;transform:translate(-50%,-50%);border-radius:calc(22px - var(--p)*12px);box-shadow:0 0 50px rgba(0,0,0,.34);transition:none;background:#231c16 url('/assets/images/hero-painting.png') center/cover no-repeat}
+    .bs-hero.bs-expand-hero .bs-hero-video{z-index:1;inset:auto;left:50%;top:50%;width:calc(300px + var(--p) * (min(95vw,1550px) - 300px));height:calc(400px + var(--p) * (min(85vh,800px) - 400px));max-width:95vw;max-height:85vh;transform:translate(-50%,-50%);border-radius:calc(22px - var(--p)*12px);box-shadow:0 0 50px rgba(0,0,0,.34);transition:none;background:#231c16 url('/assets/images/wood-grain-hero-poster.jpg') center/cover no-repeat}
     .bs-hero.bs-expand-hero .bs-hero-content{position:absolute;inset:0;z-index:3;width:100%;max-width:none;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
     .bs-hero.bs-expand-hero .bs-kicker{position:absolute;top:calc(50% + 225px);left:50%;transform:translateX(-50%);white-space:nowrap;color:rgba(255,255,255,.82);opacity:calc(1 - var(--p)*1.35);transition:none}
     .bs-hero.bs-expand-hero h1{width:min(1180px,94vw);max-width:none;margin:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:clamp(2.8rem,7vw,6.8rem);line-height:.92;text-shadow:0 2px 24px rgba(0,0,0,.3);mix-blend-mode:difference}

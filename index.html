@@ -112,8 +112,8 @@
       --card:#ffffff;
       --text:#1f2328;
       --muted:#60656f;
-      --accent:#22c55e;
-      --accent-strong:#16a34a;
+      --accent:#12813c;
+      --accent-strong:#0d6330;
       --border:#e7e9ee;
       --shadow:0 12px 28px rgba(0,0,0,.08);
     }
@@ -288,7 +288,7 @@
       align-items:center;
       gap:8px;
       padding:6px 10px;
-      background:#ecfdf3;
+      background:#e8f2ea;
       color:var(--accent-strong);
       border-radius:999px;
       font-weight:700;
@@ -319,7 +319,7 @@
       background:var(--accent);
       color:#fff;
       border-color:var(--accent);
-      box-shadow:0 12px 24px rgba(34,197,94,.25);
+      box-shadow:0 12px 24px rgba(18,129,60,.25);
     }
 
     .btn-primary:hover{transform:translateY(-1px);background:var(--accent-strong)}
@@ -383,7 +383,7 @@
     .demand-card span{color:var(--muted);font-size:.9rem}
 
     .demand-card:hover{
-      border-color:rgba(34,197,94,.35);
+      border-color:rgba(18,129,60,.35);
       box-shadow:0 12px 28px rgba(0,0,0,.06);
       transform:translateY(-2px);
     }
@@ -448,7 +448,7 @@
       font-size:1rem;
       cursor:pointer;
       transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
-      box-shadow:0 12px 24px rgba(34,197,94,.25);
+      box-shadow:0 12px 24px rgba(18,129,60,.25);
     }
 
     button:hover{background:var(--accent-strong);transform:translateY(-1px)}
@@ -462,9 +462,10 @@
       border-radius:12px;
       padding:13px 18px;
       background:var(--accent);
+      color:#fff;
       font-weight:700;
       letter-spacing:0;
-      box-shadow:0 8px 16px rgba(34,197,94,.2);
+      box-shadow:0 8px 16px rgba(18,129,60,.2);
     }
 
     #project-form .submit-request-btn:hover{
@@ -473,7 +474,7 @@
     }
 
     #project-form .submit-request-btn:focus-visible{
-      outline:3px solid rgba(34,197,94,.35);
+      outline:3px solid rgba(18,129,60,.35);
       outline-offset:2px;
     }
 
@@ -548,7 +549,7 @@
     }
 
     .faq-item:hover{
-      border-color:rgba(34,197,94,.35);
+      border-color:rgba(18,129,60,.35);
       box-shadow:0 10px 20px rgba(0,0,0,.04);
     }
 
@@ -775,24 +776,26 @@
   <section class="relative w-full !mt-0">
     <div class="relative z-0 h-[100svh] w-full overflow-hidden">
       <img
-        src="/assets/images/nvohero-homeowner-pro.png"
-        alt="Homeowner reviewing project details with a local professional"
-        class="absolute inset-0 h-full w-full object-cover object-[70%_70%] sm:object-center"
+        src="/assets/images/hero-home-southflorida.jpg"
+        alt="South Florida home lit at dusk around a courtyard pool"
+        width="2200" height="1238" fetchpriority="high" decoding="async"
+        class="absolute inset-0 h-full w-full object-cover object-center"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/10"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-black/50"></div>
 
       <div class="absolute inset-0 z-10 flex items-center px-6 sm:px-10 lg:px-16">
         <div class="max-w-3xl">
-          <p class="mb-4 text-xs uppercase tracking-[0.3em] text-white/80">Trusted local pros</p>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-white">Trusted local pros</p>
           <h1 class="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
             Hire with confidence for your next home project
           </h1>
-          <p class="mt-5 text-lg text-white/85 sm:text-xl">
+          <p class="mt-5 text-lg text-white/90 sm:text-xl">
             Compare quotes, speak with vetted professionals, and book with peace of mind across South Florida.
           </p>
           <div class="mt-8 flex flex-wrap items-center gap-4">
             <a
-              class="inline-flex items-center justify-center rounded-full bg-[#22c55e] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#16a34a] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              class="inline-flex items-center justify-center rounded-full bg-[#12813c] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#0d6330] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
               href="#lead-form"
               data-ga4="get_quote"
             >
