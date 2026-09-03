@@ -77,7 +77,7 @@
       --card:#ffffff;
       --text:#1f2328;
       --muted:#60656f;
-      --accent:#12813c;
+      --accent:#12813c;--btn:#0a2e18;--btn-hover:#15522c;
       --accent-strong:#0d6330;
       --border:#e7e9ee;
       --shadow:0 8px 20px rgba(0,0,0,.06);
@@ -271,12 +271,12 @@
     }
 
     .btn-primary{
-      background:var(--accent);
+      background:var(--btn);
       color:#fff;
       box-shadow:0 8px 18px rgba(18,129,60,.18);
     }
 
-    .btn-primary:hover{transform:translateY(-1px);background:var(--accent-strong)}
+    .btn-primary:hover{transform:translateY(-1px);background:var(--btn-hover)}
 
     .microline{
       font-size:.9rem;
@@ -343,8 +343,8 @@
       width:auto;
       min-width:220px;
       align-self:flex-start;
-      border:1px solid var(--accent);
-      background:var(--accent);
+      border:1px solid var(--btn);
+      background:var(--btn);
       color:#fff;
       font-weight:700;
       letter-spacing:0;
@@ -533,7 +533,7 @@
           </p>
           <div class="mt-8 flex flex-wrap items-center gap-4">
             <a
-              class="inline-flex items-center justify-center rounded-full bg-[#12813c] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#0d6330] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              class="inline-flex items-center justify-center rounded-full bg-[#0a2e18] ring-1 ring-white/25 px-6 py-3 text-base font-semibold text-white transition hover:bg-[#15522c] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
               href="#lead-form"
             >
               Get Painting
