@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>BrightScale Scanner · Lead</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0A0A0F;--card:#13131A;--card2:#0F0F15;--line:#2A2A38;--text:#F7F7FA;--muted:#A9A9B5;--green:#00E5A0}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:760px;margin:auto;padding:22px 16px calc(60px + env(safe-area-inset-bottom))}.brand{font-weight:800;letter-spacing:.2px;color:var(--green);font-size:18px}.subbrand{font-size:12px;color:var(--muted);margin-top:4px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}.score{font-size:34px;font-weight:800}.muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.kv{background:var(--card2);border-radius:12px;padding:12px}.k{font-size:11px;color:#8E8E9D;text-transform:uppercase;letter-spacing:.07em}.v{margin-top:5px;font-weight:650;overflow-wrap:anywhere}
+    .message{font-size:18px;line-height:1.48;white-space:pre-wrap;overflow-wrap:anywhere}.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#242431;margin:3px 4px 3px 0;font-size:13px}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{display:block;text-align:center;text-decoration:none;border:0;border-radius:13px;padding:14px 12px;font-weight:750;font-size:16px;cursor:pointer}.primary{background:var(--green);color:#07110D}.secondary{background:#242431;color:#fff}
+    .draft{white-space:pre-wrap;line-height:1.45;background:#0E0E14;padding:14px;border-radius:12px;border:1px solid var(--line)}.notice{font-size:13px;color:#B7B7C2;line-height:1.4}.contact a{color:var(--green)}
+    .loading,.error{text-align:center;padding:60px 20px;color:var(--muted)}.error strong{display:block;color:#fff;margin-bottom:8px}.hidden{display:none!important}
+    @media(max-width:520px){.grid,.actions{grid-template-columns:1fr}.score{font-size:30px}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="brand">BrightScale Scanner</div><div class="subbrand">Lead intelligence</div>
+  <div id="loading" class="loading">Loading lead…</div>
+  <div id="error" class="error hidden"><strong>Could not open this lead.</strong><span id="errorText">The link may be invalid.</span></div>
+  <div id="app" class="hidden">
+    <div class="card"><div class="muted">Lead opportunity</div><div class="score"><span id="score">0</span>/100</div><div><span class="pill" id="status"></span><span class="pill" id="confidence"></span></div></div>
+    <div class="card"><div class="k">Service</div><h2 id="service"></h2><div class="message" id="message"></div></div>
+    <div class="card"><h3>Source</h3><div class="grid">
+      <div class="kv"><div class="k">Group</div><div class="v" id="group"></div></div>
+      <div class="kv"><div class="k">Sender</div><div class="v" id="sender"></div></div>
+      <div class="kv"><div class="k">Received</div><div class="v" id="received"></div></div>
+      <div class="kv"><div class="k">Location</div><div class="v" id="location"></div></div>
+    </div></div>
+    <div class="card"><h3>AI analysis</h3><div class="grid">
+      <div class="kv"><div class="k">Vertical</div><div class="v" id="vertical"></div></div>
+      <div class="kv"><div class="k">Category</div><div class="v" id="category"></div></div>
+      <div class="kv"><div class="k">Intent</div><div class="v" id="intent"></div></div>
+      <div class="kv"><div class="k">Urgency</div><div class="v" id="urgency"></div></div>
+      <div class="kv"><div class="k">Job type</div><div class="v" id="jobType"></div></div>
+      <div class="kv"><div class="k">Size</div><div class="v" id="jobSize"></div></div>
+    </div><p class="notice" id="whyWrap"><strong>Why:</strong> <span id="why"></span></p></div>
+    <div class="card contact"><h3>Contact info</h3><div id="contactInfo"></div><p class="notice hidden" id="photoNotice">📷 A photo/image may have been attached, but the current Android scanner did not capture the media file itself.</p></div>
+    <div class="card" id="contact"><h3>Suggested first contact</h3><div class="draft" id="draft"></div><div class="actions" style="margin-top:12px"><button class="btn secondary" id="copyBtn">📋 Copy message</button><a class="btn primary" id="whatsappBtn" href="#">💬 Open WhatsApp</a></div><p class="notice">First contact stays human-approved. After the lead replies, the conversation can be handed to the AI Sales Agent.</p></div>
+  </div>
+</main>
+<script>
+const API='https://hyvoatfozlpsevsbkxxm.supabase.co/functions/v1/lead-data';
+const $=id=>document.getElementById(id); const text=(id,v)=>$(id).textContent=v??'Unknown';
+function showError(msg){$('loading').classList.add('hidden');$('app').classList.add('hidden');$('error').classList.remove('hidden');$('errorText').textContent=msg||'The link may be invalid.'}
+async function load(){
+  const token=new URLSearchParams(location.search).get('token')||'';
+  if(!token){showError('Missing lead token.');return}
+  try{
+    const r=await fetch(`${API}?token=${encodeURIComponent(token)}`,{headers:{'Accept':'application/json'},cache:'no-store'});
+    if(!r.ok) throw new Error(r.status===404?'Lead not found.':'Unable to load lead.');
+    const d=await r.json();
+    text('score',d.lead_score??0); text('status',d.lead_status||'lead'); text('confidence',`AI ${d.ai_confidence??'—'}%`);
+    text('service',d.service||'Service request'); text('message',d.message||''); text('group',d.group||'Unknown'); text('sender',d.sender||'Unknown'); text('received',d.received||'Unknown'); text('location',d.location||'Unknown');
+    text('vertical',d.vertical||'Unknown'); text('category',d.category||'Unknown'); text('intent',d.intent||'Unknown'); text('urgency',d.urgency||'Unknown'); text('jobType',d.job_type||'Unknown'); text('jobSize',d.job_size||'Unknown');
+    if(d.why){text('why',d.why)}else{$('whyWrap').classList.add('hidden')}
+    const ci=$('contactInfo'); ci.replaceChildren();
+    if(d.phone){const p=document.createElement('p');const a=document.createElement('a');a.href=`https://wa.me/${d.phone}`;a.textContent=`+${d.phone}`;p.append('📱 ',a);ci.appendChild(p)}
+    if(d.email){const p=document.createElement('p');const a=document.createElement('a');a.href=`mailto:${d.email}`;a.textContent=d.email;p.append('✉️ ',a);ci.appendChild(p)}
+    if(!d.phone&&!d.email){const p=document.createElement('p');p.className='muted';p.textContent='No phone number or email was exposed in this notification.';ci.appendChild(p)}
+    if(d.photo_hint)$('photoNotice').classList.remove('hidden');
+    text('draft',d.contact_draft||''); $('whatsappBtn').href=d.whatsapp_url||'#';
+    $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(d.contact_draft||'');$('copyBtn').textContent='✅ Copied';setTimeout(()=>$('copyBtn').textContent='📋 Copy message',1200)}catch{window.getSelection().selectAllChildren($('draft'))}};
+    $('loading').classList.add('hidden');$('app').classList.remove('hidden');
+    if(location.hash==='#contact') setTimeout(()=>$('contact').scrollIntoView({behavior:'smooth'}),100);
+  }catch(e){showError(e?.message||'Unable to load lead.')}
+}
+load();
+</script>
+</body></html>
