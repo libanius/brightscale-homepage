@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>BrightScale Sales Agent Simulator</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0A0A0F;--card:#13131A;--card2:#0F0F15;--line:#2A2A38;--text:#F7F7FA;--muted:#A9A9B5;--green:#00E5A0;--purple:#7C6BFF;--red:#FF6B6B;--amber:#FFB347}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:980px;margin:auto;padding:18px 14px calc(32px + env(safe-area-inset-bottom))}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.brand{font-weight:850;color:var(--green);font-size:18px}.sub{font-size:12px;color:var(--muted);margin-top:3px}.badge{font-size:12px;padding:7px 9px;border-radius:999px;background:#242431;color:#fff}.warning{background:#2A2112;color:#FFD79A;border:1px solid #5A4620;border-radius:14px;padding:11px 13px;font-size:13px;margin:12px 0;line-height:1.4}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px}.lead-title{font-size:22px;font-weight:800;margin:3px 0 8px}.lead-msg{white-space:pre-wrap;line-height:1.45;color:#E9E9EF}.meta{font-size:12px;color:var(--muted);margin-top:8px}.chat{min-height:420px;max-height:62vh;overflow:auto;padding:10px 2px 14px}.row{display:flex;margin:9px 0}.row.customer{justify-content:flex-end}.bubble{max-width:84%;padding:11px 13px;border-radius:15px;line-height:1.42;white-space:pre-wrap;overflow-wrap:anywhere}.assistant .bubble{background:#1A1A24;border:1px solid #303040;border-bottom-left-radius:5px}.customer .bubble{background:#0D5A43;border:1px solid #168565;border-bottom-right-radius:5px}.who{font-size:10px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}.composer{display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:10px}.composer textarea{resize:none;min-height:48px;max-height:130px;background:#0F0F15;color:#fff;border:1px solid var(--line);border-radius:13px;padding:13px;font:inherit}.btn{border:0;border-radius:13px;padding:0 16px;font-weight:800;cursor:pointer}.send{background:var(--green);color:#06110C}.secondary{background:#242431;color:#fff;padding:11px 13px}.toolbar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.k{font-size:10px;color:#8E8E9D;text-transform:uppercase;letter-spacing:.08em}.v{font-weight:700;margin-top:4px}.state-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.state-item{background:var(--card2);border-radius:12px;padding:10px}.qual{margin-top:12px}.qual-item{padding:9px 0;border-top:1px solid #262633}.qual-item:first-child{border-top:0}.qfield{font-size:11px;color:var(--muted);text-transform:uppercase}.qvalue{margin-top:3px;font-size:14px}.handoff{border-color:#6B3333;background:#211315}.handoff strong{color:#FF9B9B}.loading,.error{text-align:center;padding:60px 20px;color:var(--muted)}.error strong{display:block;color:#fff;margin-bottom:6px}.hidden{display:none!important}.typing{opacity:.7;font-style:italic;font-size:13px;padding:6px 2px}.pill{display:inline-block;border-radius:999px;padding:5px 8px;background:#242431;font-size:11px;margin-right:4px}.status-quote_ready{background:#153A2E;color:#9FF0D2}.status-handoff{background:#442126;color:#FFB6BE}.back{color:var(--green);text-decoration:none;font-size:13px}
+    @media(max-width:760px){.layout{grid-template-columns:1fr}.chat{max-height:none;min-height:360px}.side{order:-1}.state-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="top"><div><div class="brand">BrightScale Sales Agent</div><div class="sub">Qualification simulator</div></div><span class="badge">SIMULATOR</span></div>
+  <div class="warning">🧪 Nothing on this page is sent to WhatsApp. You are testing how the AI would qualify the lead after the prospect engages with BrightScale.</div>
+  <div id="loading" class="loading">Starting simulator…</div>
+  <div id="error" class="error hidden"><strong>Could not start the simulator.</strong><span id="errorText"></span></div>
+  <div id="app" class="layout hidden">
+    <section>
+      <div class="card">
+        <div class="k">Lead</div><div class="lead-title" id="service"></div><div class="lead-msg" id="leadMessage"></div><div class="meta" id="leadMeta"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div id="chat" class="chat"></div>
+        <div id="typing" class="typing hidden">BrightScale AI is thinking…</div>
+        <div class="composer"><textarea id="input" placeholder="Reply as the customer…" autocomplete="off"></textarea><button id="sendBtn" class="btn send">Send</button></div>
+        <div class="toolbar"><button id="resetBtn" class="btn secondary">↻ Reset conversation</button><a id="backLink" class="back" href="#">← Back to lead</a></div>
+      </div>
+    </section>
+    <aside class="side">
+      <div id="stateCard" class="card">
+        <div class="k">Agent state</div><div class="state-grid">
+          <div class="state-item"><div class="k">Status</div><div class="v" id="status">—</div></div>
+          <div class="state-item"><div class="k">Next action</div><div class="v" id="nextAction">—</div></div>
+          <div class="state-item"><div class="k">Playbook</div><div class="v" id="playbook">—</div></div>
+          <div class="state-item"><div class="k">Score</div><div class="v" id="score">—</div></div>
+        </div>
+        <div class="qual"><div class="k">Qualification memory</div><div id="qualification"></div></div>
+      </div>
+      <div id="summaryCard" class="card" style="margin-top:14px"><div class="k">Conversation summary</div><p id="summary" style="line-height:1.45;margin-bottom:0">—</p></div>
+      <div id="handoffCard" class="card handoff hidden" style="margin-top:14px"><strong>Human handoff</strong><p id="handoffReason" style="margin-bottom:0;line-height:1.4"></p></div>
+    </aside>
+  </div>
+</main>
+<script>
+const API='https://hyvoatfozlpsevsbkxxm.supabase.co/functions/v1/sales-agent';
+const leadToken=new URLSearchParams(location.search).get('token')||'';
+let conversationToken='';
+const $=id=>document.getElementById(id);
+function showError(msg){$('loading').classList.add('hidden');$('app').classList.add('hidden');$('error').classList.remove('hidden');$('errorText').textContent=msg||'Unknown error'}
+function escText(v){return String(v??'')}
+async function call(body){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body),cache:'no-store'});const d=await r.json().catch(()=>({}));if(!r.ok||d.ok===false)throw new Error(d.error||`Request failed (${r.status})`);return d}
+function renderMessages(messages){const chat=$('chat');chat.replaceChildren();for(const m of messages||[]){const row=document.createElement('div');row.className=`row ${m.role==='assistant'?'assistant':'customer'}`;const wrap=document.createElement('div');wrap.className='bubble';const who=document.createElement('div');who.className='who';who.textContent=m.role==='assistant'?'BrightScale AI':'Customer';const body=document.createElement('div');body.textContent=m.content;wrap.append(who,body);row.appendChild(wrap);chat.appendChild(row)}chat.scrollTop=chat.scrollHeight}
+function renderQualification(state){const q=$('qualification');q.replaceChildren();const data=state?.qualification||{};const entries=Object.entries(data);if(!entries.length){const p=document.createElement('p');p.className='meta';p.textContent='No details captured yet.';q.appendChild(p);return}for(const [field,obj] of entries){const row=document.createElement('div');row.className='qual-item';const f=document.createElement('div');f.className='qfield';f.textContent=field.replaceAll('_',' ');const v=document.createElement('div');v.className='qvalue';v.textContent=obj?.value??String(obj??'');row.append(f,v);q.appendChild(row)}}
+function render(d){conversationToken=d.conversation_token||conversationToken;const lead=d.lead||{};$('service').textContent=lead.service||'Service request';$('leadMessage').textContent=lead.original_message||'';$('leadMeta').textContent=`${lead.group||'Direct chat'} · ${lead.sender||'Unknown'} · ${lead.location||'Unknown'}`;$('status').textContent=d.status||'—';$('status').className=`v status-${d.status||''}`;$('nextAction').textContent=(d.next_action||'—').replaceAll('_',' ');$('playbook').textContent=d.playbook||'—';$('score').textContent=lead.score==null?'—':`${lead.score}/100`;$('summary').textContent=d.summary||'—';renderQualification(typeof d.state==='string'?JSON.parse(d.state):d.state);renderMessages(d.messages);if(d.status==='handoff'||d.handoff_reason){$('handoffCard').classList.remove('hidden');$('handoffReason').textContent=d.handoff_reason||'Human review requested.'}else{$('handoffCard').classList.add('hidden')};$('loading').classList.add('hidden');$('error').classList.add('hidden');$('app').classList.remove('hidden')}
+async function start(){if(!leadToken){showError('Missing lead token.');return}try{const d=await call({action:'start',lead_token:leadToken});render(d);$('backLink').href=`/scanner-lead.html?token=${encodeURIComponent(leadToken)}`}catch(e){showError(e.message)}}
+async function send(){const msg=$('input').value.trim();if(!msg||!conversationToken)return;$('sendBtn').disabled=true;$('input').disabled=true;$('typing').classList.remove('hidden');try{const d=await call({action:'message',conversation_token:conversationToken,message:msg});$('input').value='';render(d)}catch(e){alert(e.message)}finally{$('typing').classList.add('hidden');$('sendBtn').disabled=false;$('input').disabled=false;$('input').focus()}}
+async function reset(){if(!conversationToken)return;if(!confirm('Reset this simulator conversation?'))return;$('resetBtn').disabled=true;$('typing').classList.remove('hidden');try{const d=await call({action:'reset',conversation_token:conversationToken});render(d)}catch(e){alert(e.message)}finally{$('typing').classList.add('hidden');$('resetBtn').disabled=false}}
+$('sendBtn').onclick=send;$('resetBtn').onclick=reset;$('input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});start();
+</script>
+</body></html>
