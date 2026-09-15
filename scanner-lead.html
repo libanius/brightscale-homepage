@@ -13,7 +13,7 @@
     .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}.score{font-size:34px;font-weight:800}.muted{color:var(--muted)}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.kv{background:var(--card2);border-radius:12px;padding:12px}.k{font-size:11px;color:#8E8E9D;text-transform:uppercase;letter-spacing:.07em}.v{margin-top:5px;font-weight:650;overflow-wrap:anywhere}
     .message{font-size:18px;line-height:1.48;white-space:pre-wrap;overflow-wrap:anywhere}.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#242431;margin:3px 4px 3px 0;font-size:13px}
-    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{display:block;text-align:center;text-decoration:none;border:0;border-radius:13px;padding:14px 12px;font-weight:750;font-size:16px;cursor:pointer}.primary{background:var(--green);color:#07110D}.secondary{background:#242431;color:#fff}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{display:block;text-align:center;text-decoration:none;border:0;border-radius:13px;padding:14px 12px;font-weight:750;font-size:16px;cursor:pointer}.primary{background:var(--green);color:#07110D}.secondary{background:#242431;color:#fff}.agent{background:#1C1930;color:#D9D3FF;border:1px solid #41386E}
     .draft{white-space:pre-wrap;line-height:1.45;background:#0E0E14;padding:14px;border-radius:12px;border:1px solid var(--line)}.notice{font-size:13px;color:#B7B7C2;line-height:1.4}.contact a{color:var(--green)}
     .loading,.error{text-align:center;padding:60px 20px;color:var(--muted)}.error strong{display:block;color:#fff;margin-bottom:8px}.hidden{display:none!important}
     @media(max-width:520px){.grid,.actions{grid-template-columns:1fr}.score{font-size:30px}}
@@ -42,7 +42,7 @@
       <div class="kv"><div class="k">Size</div><div class="v" id="jobSize"></div></div>
     </div><p class="notice" id="whyWrap"><strong>Why:</strong> <span id="why"></span></p></div>
     <div class="card contact"><h3>Contact info</h3><div id="contactInfo"></div><p class="notice hidden" id="photoNotice">📷 A photo/image may have been attached, but the current Android scanner did not capture the media file itself.</p></div>
-    <div class="card" id="contact"><h3>Suggested first contact</h3><div class="draft" id="draft"></div><div class="actions" style="margin-top:12px"><button class="btn secondary" id="copyBtn">📋 Copy message</button><a class="btn primary" id="whatsappBtn" href="#">💬 Open WhatsApp</a></div><p class="notice">First contact stays human-approved. After the lead replies, the conversation can be handed to the AI Sales Agent.</p></div>
+    <div class="card" id="contact"><h3>Suggested first contact</h3><div class="draft" id="draft"></div><div class="actions" style="margin-top:12px"><button class="btn secondary" id="copyBtn">📋 Copy message</button><a class="btn primary" id="whatsappBtn" href="#">💬 Open WhatsApp</a></div><a class="btn agent" id="salesAgentBtn" href="#" style="margin-top:10px">🧠 Test Sales Agent</a><p class="notice">First contact stays human-approved. After the lead replies, the conversation can be handed to the AI Sales Agent. The simulator sends nothing to WhatsApp.</p></div>
   </div>
 </main>
 <script>
@@ -65,7 +65,7 @@ async function load(){
     if(d.email){const p=document.createElement('p');const a=document.createElement('a');a.href=`mailto:${d.email}`;a.textContent=d.email;p.append('✉️ ',a);ci.appendChild(p)}
     if(!d.phone&&!d.email){const p=document.createElement('p');p.className='muted';p.textContent='No phone number or email was exposed in this notification.';ci.appendChild(p)}
     if(d.photo_hint)$('photoNotice').classList.remove('hidden');
-    text('draft',d.contact_draft||''); $('whatsappBtn').href=d.whatsapp_url||'#';
+    text('draft',d.contact_draft||''); $('whatsappBtn').href=d.whatsapp_url||'#'; $('salesAgentBtn').href=`/sales-agent-simulator.html?token=${encodeURIComponent(token)}`;
     $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(d.contact_draft||'');$('copyBtn').textContent='✅ Copied';setTimeout(()=>$('copyBtn').textContent='📋 Copy message',1200)}catch{window.getSelection().selectAllChildren($('draft'))}};
     $('loading').classList.add('hidden');$('app').classList.remove('hidden');
     if(location.hash==='#contact') setTimeout(()=>$('contact').scrollIntoView({behavior:'smooth'}),100);
