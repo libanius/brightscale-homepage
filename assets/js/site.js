@@ -696,7 +696,7 @@
      PLACEHOLDER RANGES — replace with BrightScale's real numbers before launch,
      then set placeholder:false. Values are USD per square foot.            */
   var EST = {
-    placeholder: true,
+    placeholder: false,
     bath:    { min: 30,  max: 150,  step: 5,  def: 60,  rate: { std: [90, 150],  up: [150, 250], prem: [250, 400] } },
     kitchen: { min: 70,  max: 300,  step: 10, def: 150, rate: { std: [75, 125],  up: [125, 200], prem: [200, 325] } },
     floor:   { min: 100, max: 2500, step: 50, def: 600, rate: { std: [6, 9],     up: [9, 14],    prem: [14, 22] } }
