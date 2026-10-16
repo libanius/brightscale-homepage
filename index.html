@@ -176,17 +176,41 @@
         <p class="label" data-i18n="trk.label"></p>
         <h2><span data-i18n="trk.t1"></span> <span class="lt" data-i18n="trk.t2"></span></h2>
         <p class="lead" data-i18n="trk.lead"></p>
-        <ul><li data-i18n="trk.point1"></li><li data-i18n="trk.point2"></li><li data-i18n="trk.point3"></li></ul>
+        <div class="trk-list">
+          <div><span class="n">01</span><p style="margin:0"><b data-i18n="trk.f1"></b><span data-i18n="trk.f1.d"></span></p></div><div><span class="n">02</span><p style="margin:0"><b data-i18n="trk.f2"></b><span data-i18n="trk.f2.d"></span></p></div><div><span class="n">03</span><p style="margin:0"><b data-i18n="trk.f3"></b><span data-i18n="trk.f3.d"></span></p></div><div><span class="n">04</span><p style="margin:0"><b data-i18n="trk.f4"></b><span data-i18n="trk.f4.d"></span></p></div>
+        </div>
+        <div class="share" aria-hidden="true">
+          <div class="lbl" data-i18n="trk.share"></div>
+          <div class="row"><code>brightscale…/dashboard?project=kitchen</code><span class="cp" data-i18n="trk.copy"></span></div>
+        </div>
       </div>
-      <div class="phone" aria-label="Example of a project progress page">
-        <span class="callout" data-i18n="trk.example"></span>
-        <div class="phone-top" style="margin-top:12px"><b data-i18n="trk.job"></b><small data-i18n="trk.where"></small></div>
-        <div class="bar" role="img" aria-label="62%"><i></i></div>
-        <div class="phase done"><span class="dot"></span><span data-i18n="trk.p1"></span><small data-i18n="trk.done"></small></div>
-        <div class="phase done"><span class="dot"></span><span data-i18n="trk.p2"></span><small data-i18n="trk.done"></small></div>
-        <div class="phase now"><span class="dot"></span><span data-i18n="trk.p3"></span><small data-i18n="trk.now"></small></div>
-        <div class="phase"><span class="dot"></span><span data-i18n="trk.p4"></span><small data-i18n="trk.next"></small></div>
-        <div class="phase"><span class="dot"></span><span data-i18n="trk.p5"></span><small></small></div>
+      <div class="tracker-art">
+        <div class="iphone" role="img" aria-label="BrightScale Tracker project dashboard on a phone, sample kitchen project at 66%">
+          <div class="iphone-screen" aria-hidden="true">
+            <div class="ip-bar"><img src="assets/brand/remodeling/brightscale-remodeling-horizontal-reversed.svg" alt=""><span data-i18n="ph.dash"></span></div>
+            <div class="ip-head">
+              <div class="row"><div><b data-i18n="ph.job"></b><small data-i18n="ph.sample"></small></div><div class="ip-pct">66%</div></div>
+              <div class="ip-prog"><i></i></div>
+              <div class="ip-muted" data-i18n="ph.updated"></div>
+            </div>
+            <div class="ip-label" data-i18n="ph.scopes"></div>
+            <div class="ip-scopes">
+              <div><span data-i18n="ph.s1"></span><span class="ok">100%</span></div>
+              <div><span data-i18n="ph.s2"></span><span class="ok">100%</span></div>
+              <div><span data-i18n="ph.s3"></span><span class="now">80%</span></div>
+              <div class="now"><span data-i18n="ph.s4"></span><span>60%</span></div>
+              <div><span data-i18n="ph.s5"></span><span class="zero">0%</span></div>
+              <div><span data-i18n="ph.s6"></span><span class="zero">0%</span></div>
+            </div>
+            <div class="ip-tasks">
+              <b data-i18n="ph.tasks"></b>
+              <div><span data-i18n="ph.t1"></span><span class="pill done" data-i18n="ph.done"></span></div>
+              <div><span data-i18n="ph.t2"></span><span class="pill done" data-i18n="ph.done"></span></div>
+              <div><span data-i18n="ph.t3"></span><span class="pill now">40%</span></div>
+              <div><span data-i18n="ph.t4"></span><span class="pill wait" data-i18n="ph.pending"></span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
