@@ -55,6 +55,8 @@
   "feat.cab.4": "Trim and moldings",
   "gl.t1": "Services",
   "gl.t2": "at a glance",
+  "f.sending": "Sending…",
+  "f.invalid": "Please check your phone number and email and try again.",
   "rv.t1": "What clients say",
   "rv.t2": "on Google",
   "rv.count": "reviews on Google",
@@ -272,6 +274,8 @@
   "feat.cab.4": "Molduras y zócalos",
   "gl.t1": "Servicios",
   "gl.t2": "de un vistazo",
+  "f.sending": "Enviando…",
+  "f.invalid": "Revise su teléfono y correo electrónico e intente de nuevo.",
   "rv.t1": "Lo que dicen los clientes",
   "rv.t2": "en Google",
   "rv.count": "reseñas en Google",
@@ -489,6 +493,8 @@
   "feat.cab.4": "Guarnições e rodapés",
   "gl.t1": "Serviços",
   "gl.t2": "em resumo",
+  "f.sending": "Enviando…",
+  "f.invalid": "Confira o telefone e o e-mail e tente de novo.",
   "rv.t1": "O que os clientes dizem",
   "rv.t2": "no Google",
   "rv.count": "avaliações no Google",
@@ -756,6 +762,7 @@
     form.addEventListener("change", window.bsEstimate);
   }
 
+  var LEAD_URL = "https://hyvoatfozlpsevsbkxxm.supabase.co/functions/v1/web-lead";
   /* ---------- Contact form: prefill from estimator ---------- */
   function setupContact() {
     var f = document.getElementById("visit-form");
@@ -770,6 +777,46 @@
     }
     var next = f.querySelector("input[name=_next]");
     if (next) next.value = new URL("thank-you.html", location.href).href;
+
+    /* Send to our own lead pipeline (Supabase → Telegram + HTML emails).
+       If it cannot be reached, fall back to the plain form post (FormSubmit). */
+    var started = Date.now();
+    var sending = false;
+    f.addEventListener("submit", function (e) {
+      if (!window.fetch || f.dataset.fallback === "1") return;
+      e.preventDefault();
+      if (sending) return;
+      var btn = f.querySelector("button[type=submit]");
+      var note = f.querySelector(".form-status");
+      if (!note) { note = document.createElement("p"); note.className = "form-status"; note.setAttribute("role", "status"); btn.insertAdjacentElement("afterend", note); }
+      var fd = new FormData(f);
+      var pick = function (name) { var el = f.querySelector("select[name=" + name + "]"); return el && el.selectedIndex >= 0 ? el.options[el.selectedIndex].text : ""; };
+      var consentEl = f.querySelector("input[name=sms_consent]");
+      var payload = {
+        name: fd.get("name"), phone: fd.get("phone"), email: fd.get("email"), zip: fd.get("zip"),
+        project: fd.get("project"), project_label: pick("project"),
+        start: fd.get("start"), start_label: pick("start"),
+        details: fd.get("details"),
+        sms_consent: !!(consentEl && consentEl.checked),
+        sms_consent_text: consentEl && consentEl.checked ? (consentEl.parentNode.textContent || "").trim() : "",
+        language: lang, page: location.pathname, _honey: fd.get("_honey"),
+        elapsed_ms: Date.now() - started,
+        estimate: params.get("size") ? { project: params.get("project") || "", size: params.get("size") || "", finish: params.get("finish") || "" } : {}
+      };
+      sending = true; btn.disabled = true; note.className = "form-status"; note.textContent = t("f.sending");
+      fetch(LEAD_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { status: r.status, d: d }; }); })
+        .then(function (res) {
+          if (res.d && res.d.ok) {
+            try { if (window.gtag) gtag("event", "generate_lead", { method: "contact_form" }); } catch (x) {}
+            location.href = "thank-you.html";
+            return;
+          }
+          if (res.status === 422) { sending = false; btn.disabled = false; note.className = "form-status err"; note.textContent = t("f.invalid"); return; }
+          throw new Error("lead " + res.status);
+        })
+        .catch(function () { f.dataset.fallback = "1"; HTMLFormElement.prototype.submit.call(f); });
+    });
   }
 
   /* ---------- Analytics only after consent ---------- */
