@@ -742,7 +742,9 @@
       var sq = Number(size.value);
       var r = cfg.rate[finish];
       document.getElementById("size-val").textContent = sq.toLocaleString("en-US") + " " + t("est.sqft") + " (≈ " + Math.round(sq * 0.0929) + " m²)";
-      document.getElementById("est-range").textContent = money(sq * r[0]) + " – " + money(sq * r[1]);
+      var rangeEl = document.getElementById("est-range");
+      if (window.bsTweenRange) window.bsTweenRange(rangeEl, sq * r[0], sq * r[1], money);
+      else rangeEl.textContent = money(sq * r[0]) + " – " + money(sq * r[1]);
       document.getElementById("est-meta").textContent = t("est.for") + " " + sq.toLocaleString("en-US") + " " + t("est.sqft");
       size.setAttribute("aria-valuetext", sq.toLocaleString("en-US") + " " + t("est.sqft"));
       var note = document.getElementById("est-placeholder");
