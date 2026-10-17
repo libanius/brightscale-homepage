@@ -821,7 +821,9 @@
     var sec = document.getElementById("reviews");
     var d = reviewsData;
     if (!sec || !d || !d.reviews || !d.reviews.length) return;
-    var list = d.reviews.filter(function (r) { return r.text && r.rating >= 4; }).slice(0, 3);
+    var list = d.reviews.filter(function (r) { return r.text && r.rating >= 4; })
+      .sort(function (a, b) { return String(b.publishTime || "").localeCompare(String(a.publishTime || "")); })
+      .slice(0, 3);
     if (!list.length) return;
     sec.querySelector(".rv-score").innerHTML = '<b>' + Number(d.rating).toFixed(1) + "</b>" + stars(d.rating) +
       '<span>' + esc(d.count) + " " + esc(t("rv.count")) + "</span>";

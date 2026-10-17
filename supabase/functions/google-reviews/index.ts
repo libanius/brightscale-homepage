@@ -90,6 +90,7 @@ Deno.serve(async (req) => {
         author: v.authorAttribution?.displayName ?? "Google user",
         authorUrl: v.authorAttribution?.uri ?? "",
         when: v.relativePublishTimeDescription ?? "",
+        publishTime: v.publishTime ?? "",
       })),
       fetchedAt: new Date().toISOString(),
     });
