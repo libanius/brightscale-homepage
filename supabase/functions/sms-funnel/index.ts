@@ -24,10 +24,11 @@ import postgres from "npm:postgres@3.4.5";
 const dbUrl = Deno.env.get("SUPABASE_DB_URL");
 if (!dbUrl) throw new Error("SUPABASE_DB_URL is not available");
 
-const VERSION = 1;
+const VERSION = 2;
 const FROM_NUMBER = "+19547872738";
 const BOOKING_URL = "https://hyvoatfozlpsevsbkxxm.supabase.co/functions/v1/sales-booking";
 const BRAND = "BrightScale Remodeling";
+const BUSINESS_EMAIL = "brightscalegroup@gmail.com";
 const VAPI_ASSISTANT_ID = "bb28e915-1cf4-484c-8e2f-abc552db4226"; // Brighty
 const env = (k: string) => (Deno.env.get(k) || "").trim();
 const ACCOUNT_SID = env("TWILIO_ACCOUNT_SID");
@@ -115,7 +116,7 @@ async function validTwilioSignature(req: Request, params: URLSearchParams) {
 async function confirmBooking(sql: any, b: any, start: string) {
   const res = await bookingCall(sql, {
     action: "create_event", booking_type: b.booking_type, start,
-    customer_name: b.customer_name, customer_email: b.customer_email, customer_phone: b.phone,
+    customer_name: b.customer_name, customer_email: b.customer_email || BUSINESS_EMAIL, customer_phone: b.phone,
     service_summary: b.summary || "BrightScale video consultation (confirmed by text).",
   });
   if (!res.ok) return { ok: false, error: res.error };
@@ -153,7 +154,8 @@ async function handleInbound(sql: any, req: Request) {
     if (r.ok) {
       const label = etLabel(r.start);
       await telegram(sql, `✅ <b>Confirmado por SMS</b>\n${h(b.customer_name || from)} · ${h(from)}\nVídeo: ${h(label)} (ET)${r.meet ? `\nMeet: ${h(r.meet)}` : ""}`);
-      return twiml(`${BRAND}: Your video call is confirmed for ${label} (ET).${r.meet ? ` Join here: ${r.meet}` : ""} A calendar invite was sent to your email. Reply HELP for help or STOP to opt out.`);
+      const invite = b.customer_email ? " A calendar invite was sent to your email." : "";
+      return twiml(`${BRAND}: Your video call is confirmed for ${label} (ET).${r.meet ? ` Join here: ${r.meet}` : ""}${invite} Reply HELP for help or STOP to opt out.`);
     }
     // Slot was taken: offer the next three.
     const s = await bookingCall(sql, { action: "find_slots", booking_type: b.booking_type, limit: 3, horizon_days: 7, start_offset_days: 0 });
@@ -186,6 +188,83 @@ async function handleInbound(sql: any, req: Request) {
   return twiml(b
     ? `${BRAND}: Got it, thanks. Our team will reply shortly. To keep the proposed time, reply YES. Reply STOP to opt out.`
     : `${BRAND}: Thanks for your message. Our team will reply shortly, or call 954-553-9535. Reply STOP to opt out.`);
+}
+
+
+/* ---------- Brighty (Vapi) in-call tool ---------- */
+function timingSafeEqual(a: string, b: string) {
+  const ea = new TextEncoder().encode(a), eb = new TextEncoder().encode(b);
+  if (ea.length !== eb.length) return false;
+  let d = 0;
+  for (let i = 0; i < ea.length; i++) d |= ea[i] ^ eb[i];
+  return d === 0;
+}
+function vapiSecret(req: Request) {
+  const x = req.headers.get("x-vapi-secret");
+  if (x) return x.trim();
+  const a = req.headers.get("authorization") || "";
+  return a.toLowerCase().startsWith("bearer ") ? a.slice(7).trim() : "";
+}
+
+async function toolSendText(sql: any, a: any, callerPhone: string) {
+  const phone = e164(a?.customer_phone) || e164(callerPhone);
+  if (!phone || phone.length !== 12) return "No valid US mobile number. Ask for the best mobile number for texts, confirm it, then call this tool again with customer_phone.";
+  const start = String(a?.start || "").trim();
+  if (!start) return "No start time was given. Call check_availability and pass the exact start value of the time the caller chose.";
+  const type = String(a?.booking_type || "video") === "in_person" ? "in_person" : "video";
+  if (type !== "video") return "Text confirmation is only for the free video consultation. For an in-person visit use reserve_technical_visit.";
+  const chk = await bookingCall(sql, { action: "check_slot", booking_type: type, start });
+  if (!chk.ok || chk.data?.available !== true) return "That time is no longer available. Call check_availability again and offer other times.";
+  const realStart = String(chk.data?.start || start);
+  const name = String(a?.customer_name || "").trim().slice(0, 80);
+  const email = String(a?.customer_email || "").trim().toLowerCase();
+  const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? email : null;
+  const summary = String(a?.service_summary || "").trim().slice(0, 1500);
+  const short = String(a?.short_summary || "").trim().replace(/\s+/g, " ").slice(0, 90) || "free 15-minute video consultation about your project";
+  const recent = await sql`select count(*)::int n from private.sms_bookings where phone=${phone} and created_at > now() - interval '1 hour'`;
+  if (recent[0].n >= 3) return "Several texts were already sent to this number in the last hour. Do not send another; tell the caller to reply to the text they already received.";
+  const label = etLabel(realStart);
+  const ins = await sql`insert into private.sms_bookings
+    (phone, customer_name, customer_email, booking_type, proposed_start, proposed_label, summary, source)
+    values (${phone}, ${name || null}, ${okEmail}, 'video', ${realStart}, ${label}, ${summary || null}, 'vapi') returning id`;
+  const id = ins[0].id;
+  const first = name ? `, ${name.split(" ")[0]}` : "";
+  const text = `${BRAND}: Thanks for calling${first}. Summary: ${short}. Proposed visit: ${label} (ET). Reply YES to confirm or reply with another time. Reply STOP to opt out.`;
+  try {
+    await sendSms(sql, phone, text, id);
+  } catch (e) {
+    const err = String((e as Error).message || e);
+    await sql`update private.sms_bookings set status='failed', last_error=${err}, updated_at=now() where id=${id}`;
+    return "The text could not be sent right now. Tell the caller the team will confirm the appointment by phone, and keep the chosen time in your notes.";
+  }
+  await telegram(sql, `📲 <b>Brighty mandou proposta por SMS</b>\n${h(name || "Cliente")} · ${h(phone)}\nVídeo: ${h(label)} (ET) — aguardando YES`);
+  return `Text sent to the caller's phone proposing the video consultation on ${label} Eastern Time. Tell the caller they will get a text from BrightScale Remodeling in a moment and should reply YES to confirm; the Google Meet link arrives by text right after. Do not also book it with book_video_consultation.`;
+}
+
+async function handleVapi(sql: any, req: Request, payload: any) {
+  const v = await sql`select decrypted_secret from vault.decrypted_secrets where name='vapi_webhook_secret' limit 1`;
+  const expected = String(v[0]?.decrypted_secret || "");
+  const presented = vapiSecret(req);
+  if (!expected || !presented || !timingSafeEqual(expected, presented)) return json({ ok: false, error: "unauthorized" }, 401);
+  const message = payload?.message ?? payload;
+  if (message?.type !== "tool-calls") return json({ ok: true, ignored: message?.type ?? "unknown" });
+  const callerPhone = String(message?.call?.customer?.number ?? message?.customer?.number ?? "");
+  const list: any[] = Array.isArray(message?.toolCallList) ? message.toolCallList : Array.isArray(message?.toolCalls) ? message.toolCalls : [];
+  const results: { toolCallId: string; result: string }[] = [];
+  for (const tc of list) {
+    const name = String(tc?.name ?? tc?.function?.name ?? "");
+    let args: any = tc?.arguments ?? tc?.function?.arguments ?? {};
+    if (typeof args === "string") { try { args = JSON.parse(args); } catch { args = {}; } }
+    let result: string;
+    try {
+      result = name === "send_text_confirmation" ? await toolSendText(sql, args, callerPhone) : "Unknown tool.";
+    } catch (e) {
+      console.error("sms-funnel tool", String((e as Error)?.message || e));
+      result = "This could not be completed right now. Tell the caller the team will follow up, and keep the details in your notes.";
+    }
+    results.push({ toolCallId: String(tc?.id ?? ""), result });
+  }
+  return json({ results });
 }
 
 async function testPropose(sql: any, body: any) {
@@ -233,6 +312,7 @@ Deno.serve(async (req: Request) => {
     if (ct.includes("application/x-www-form-urlencoded")) return await handleInbound(sql, req);
     const body = await req.json().catch(() => ({}));
     if (body?.action === "test_propose") return await testPropose(sql, body);
+    if (body?.message?.type || req.headers.get("x-vapi-secret")) return await handleVapi(sql, req, body);
     return json({ ok: false, error: "unknown_action" }, 400);
   } catch (e) {
     console.error("sms-funnel", String((e as Error)?.message || e));
