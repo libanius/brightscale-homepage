@@ -16,10 +16,10 @@
   "hero.t1": "Kitchens, baths and floors,",
   "hero.t2": "finished to the plan.",
   "hero.lead": "Cabinetry, countertops, tile, flooring, paint and trim for homes in Miami-Dade, Broward and Palm Beach. One project manager, a written scope before work starts, and a progress page you can check any time.",
-  "hero.call": "Call Brighty",
+  "hero.call": "Call now",
   "hero.callsub": "954-553-9535",
   "hero.estimate": "See a price range",
-  "hero.note": "Brighty is our virtual assistant. It answers 24/7 in English, Spanish and Portuguese and books your visit.",
+  "hero.note": "Brighty, our virtual assistant, answers 24/7 in English, Spanish and Portuguese and books your visit.",
   "sheet.c1": "Large-format wall tile",
   "sheet.c2": "Tiled niche",
   "sheet.c3": "Floating vanity",
@@ -55,6 +55,12 @@
   "feat.cab.4": "Trim and moldings",
   "gl.t1": "Services",
   "gl.t2": "at a glance",
+  "rv.t1": "What clients say",
+  "rv.t2": "on Google",
+  "rv.count": "reviews on Google",
+  "rv.more": "See all reviews on Google",
+  "gl.more": "See all 11 services",
+  "mb.call": "Call now",
   "g1": "Custom cabinetry",
   "g1.d": "Kitchens, bathrooms, laundry rooms and built-ins, made and installed.",
   "g2": "Cabinet refacing and refinishing",
@@ -227,10 +233,10 @@
   "hero.t1": "Cocinas, baños y pisos,",
   "hero.t2": "terminados según el plano.",
   "hero.lead": "Gabinetes, encimeras, azulejos, pisos, pintura y molduras para casas en Miami-Dade, Broward y Palm Beach. Un solo gerente de proyecto, un alcance por escrito antes de empezar y una página de avance que puede revisar cuando quiera.",
-  "hero.call": "Llamar a Brighty",
+  "hero.call": "Llamar ahora",
   "hero.callsub": "954-553-9535",
   "hero.estimate": "Ver un rango de precio",
-  "hero.note": "Brighty es nuestra asistente virtual. Atiende 24/7 en inglés, español y portugués y agenda su visita.",
+  "hero.note": "Brighty, nuestra asistente virtual, atiende 24/7 en inglés, español y portugués y agenda su visita.",
   "sheet.c1": "Azulejo de gran formato",
   "sheet.c2": "Nicho de azulejo",
   "sheet.c3": "Vanitorio flotante",
@@ -266,6 +272,12 @@
   "feat.cab.4": "Molduras y zócalos",
   "gl.t1": "Servicios",
   "gl.t2": "de un vistazo",
+  "rv.t1": "Lo que dicen los clientes",
+  "rv.t2": "en Google",
+  "rv.count": "reseñas en Google",
+  "rv.more": "Ver todas las reseñas en Google",
+  "gl.more": "Ver los 11 servicios",
+  "mb.call": "Llamar ahora",
   "g1": "Gabinetes a medida",
   "g1.d": "Cocinas, baños, lavanderías y empotrados, fabricados e instalados.",
   "g2": "Reenchapado y restauración de gabinetes",
@@ -438,10 +450,10 @@
   "hero.t1": "Cozinhas, banheiros e pisos,",
   "hero.t2": "acabados conforme o projeto.",
   "hero.lead": "Armários, bancadas, revestimentos, pisos, pintura e guarnições para casas em Miami-Dade, Broward e Palm Beach. Um único gerente de obra, escopo por escrito antes de começar e uma página de acompanhamento para consultar quando quiser.",
-  "hero.call": "Ligar para a Brighty",
+  "hero.call": "Ligar agora",
   "hero.callsub": "954-553-9535",
   "hero.estimate": "Ver uma faixa de preço",
-  "hero.note": "A Brighty é nossa assistente virtual. Atende 24h em inglês, espanhol e português e agenda sua visita.",
+  "hero.note": "A Brighty, nossa assistente virtual, atende 24h em inglês, espanhol e português e agenda sua visita.",
   "sheet.c1": "Revestimento grande formato",
   "sheet.c2": "Nicho revestido",
   "sheet.c3": "Gabinete suspenso",
@@ -477,6 +489,12 @@
   "feat.cab.4": "Guarnições e rodapés",
   "gl.t1": "Serviços",
   "gl.t2": "em resumo",
+  "rv.t1": "O que os clientes dizem",
+  "rv.t2": "no Google",
+  "rv.count": "avaliações no Google",
+  "rv.more": "Ver todas as avaliações no Google",
+  "gl.more": "Ver os 11 serviços",
+  "mb.call": "Ligar agora",
   "g1": "Armários sob medida",
   "g1.d": "Cozinhas, banheiros, lavanderias e embutidos, fabricados e instalados.",
   "g2": "Refaceamento e restauração de armários",
@@ -659,6 +677,7 @@
     var langField = document.querySelector("input[name=_language]");
     if (langField) langField.value = lang;
     if (window.bsEstimate) window.bsEstimate();
+    renderReviews();
   }
 
   document.addEventListener("click", function (e) {
@@ -725,7 +744,7 @@
       document.getElementById("size-val").textContent = sq.toLocaleString("en-US") + " " + t("est.sqft") + " (≈ " + Math.round(sq * 0.0929) + " m²)";
       document.getElementById("est-range").textContent = money(sq * r[0]) + " – " + money(sq * r[1]);
       document.getElementById("est-meta").textContent = t("est.for") + " " + sq.toLocaleString("en-US") + " " + t("est.sqft");
-      size.setAttribute("aria-valuetext", sq + " square feet");
+      size.setAttribute("aria-valuetext", sq.toLocaleString("en-US") + " " + t("est.sqft"));
       var note = document.getElementById("est-placeholder");
       if (note) note.hidden = !EST.placeholder;
       var link = document.getElementById("est-book");
@@ -777,6 +796,50 @@
     });
   }
 
+  /* ---------- Mobile call bar: hide while the hero buttons are on screen ---------- */
+  function setupCallBar() {
+    var bar = document.getElementById("mbar");
+    var hero = document.querySelector(".hero-actions");
+    if (!bar || !hero || !("IntersectionObserver" in window)) return;
+    new IntersectionObserver(function (es) {
+      bar.classList.toggle("away", es[0].isIntersecting);
+    }).observe(hero);
+  }
+
+  /* ---------- Google reviews (live, via our Supabase function) ---------- */
+  var REVIEWS_URL = "https://hyvoatfozlpsevsbkxxm.supabase.co/functions/v1/google-reviews";
+  var reviewsData = null;
+  function esc(x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function stars(n) {
+    var r = Math.round(n * 2) / 2, out = "";
+    for (var i = 1; i <= 5; i++) out += '<i class="' + (r >= i ? "on" : r >= i - 0.5 ? "half" : "") + '"></i>';
+    return '<span class="stars" role="img" aria-label="' + esc(n) + ' / 5">' + out + "</span>";
+  }
+  function renderReviews() {
+    var sec = document.getElementById("reviews");
+    var d = reviewsData;
+    if (!sec || !d || !d.reviews || !d.reviews.length) return;
+    var list = d.reviews.filter(function (r) { return r.text && r.rating >= 4; }).slice(0, 3);
+    if (!list.length) return;
+    sec.querySelector(".rv-score").innerHTML = '<b>' + Number(d.rating).toFixed(1) + "</b>" + stars(d.rating) +
+      '<span>' + esc(d.count) + " " + esc(t("rv.count")) + "</span>";
+    sec.querySelector(".rv-list").innerHTML = list.map(function (r) {
+      var txt = r.text.length > 320 ? r.text.slice(0, 300).replace(/\s+\S*$/, "") + "…" : r.text;
+      return '<figure class="rv">' + stars(r.rating) + "<blockquote>" + esc(txt) + "</blockquote>" +
+        "<figcaption><b>" + esc(r.author) + "</b><span>" + esc(r.when || "") + " · Google</span></figcaption></figure>";
+    }).join("");
+    var more = sec.querySelector(".rv-more");
+    if (d.url) more.href = d.url;
+    sec.hidden = false;
+  }
+  function loadReviews() {
+    var sec = document.getElementById("reviews");
+    if (!sec || !window.fetch) return;
+    fetch(REVIEWS_URL + "?lang=" + lang).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && d.ok) { reviewsData = d; renderReviews(); } })
+      .catch(function () {});
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     var y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
     setupEstimator();
@@ -784,5 +847,7 @@
     setupContact();
     setupCookies();
     runPlan();
+    setupCallBar();
+    loadReviews();
   });
 })();

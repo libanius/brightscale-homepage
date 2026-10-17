@@ -293,3 +293,63 @@ form.card{background:var(--paper);border:2px solid var(--ink);padding:clamp(20px
 .share code{flex:1 1 auto;min-width:0;background:#1C1C1C;border:1px solid #3A3A3A;border-radius:var(--r-sm);padding:8px 10px;font:500 12px var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .share .cp{flex:none;background:var(--brand);color:#000;border-radius:var(--r-sm);padding:8px 10px;font-size:12px;font-weight:700}
 @media (max-width:900px){.tracker{grid-template-columns:1fr}}
+
+/* ---------- Impeccable pass (Oct 2026) ---------- */
+/* Anchored sections clear the sticky header */
+section[id]{scroll-margin-top:84px}
+
+/* Ink button for use on the green CTA band */
+.btn-ink{background:var(--ink);color:var(--on-ink)}
+.btn-ink:hover{background:var(--on-ink);color:var(--ink)}
+.cta .btn-line:hover{background:var(--ink);color:var(--brand)}
+
+/* Language switch: touch-size targets */
+.lang button{min-width:40px;min-height:36px}
+@media (max-width:960px){.lang button{min-width:48px;min-height:44px}}
+
+/* Services list, collapsed by default */
+.glance-wrap{margin-top:var(--s4)}
+.glance-more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:0 4px;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);font-weight:700;font-size:1.05rem}
+.glance-more summary::-webkit-details-marker{display:none}
+.glance-more summary::after{content:"";width:12px;height:12px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translateY(-3px) rotate(45deg);transition:transform .2s ease-out;flex:none;margin-right:6px}
+.glance-more[open] summary::after{transform:translateY(3px) rotate(-135deg)}
+.glance-more summary:hover{color:var(--brand-deep)}
+.glance-more .glance{margin-top:0}
+.glance-more[open] .glance{padding-bottom:var(--s1)}
+
+/* Mobile call bar — the phone is the main action, keep it in reach */
+.mbar{display:none}
+@media (max-width:900px){
+  .mbar{display:grid;grid-template-columns:1.4fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom));background:var(--ground);border-top:2px solid var(--ink);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+  .mbar .btn{min-height:50px;padding:0 12px;font-size:.98rem;white-space:nowrap}
+  .mbar .btn small{font-size:.86rem}
+  .mbar.away{transform:translateY(110%)}
+  body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+  .cookie{bottom:calc(84px + env(safe-area-inset-bottom))}
+}
+@media (max-width:360px){.mbar .btn small{display:none}}
+@media (prefers-reduced-motion:reduce){.mbar{transition:none}}
+
+/* Browser surfaces */
+::selection{background:var(--brand);color:var(--ink)}
+
+/* Google reviews, under the real project photos */
+.reviews{margin-top:clamp(40px,6vw,64px);border-top:2px solid var(--ink);padding-top:var(--s3)}
+.reviews[hidden]{display:none}
+.rv-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:var(--s3)}
+.rv-head h3{font-size:var(--step-2);margin:0}
+.rv-score{display:flex;align-items:center;gap:10px;font-size:var(--step--1);color:var(--ink-muted)}
+.rv-score b{font-size:var(--step-2);font-weight:800;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.stars{display:inline-flex;gap:2px}
+.stars i{width:16px;height:16px;background:var(--line);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.stars i.on{background:var(--ink)}
+.stars i.half{background:linear-gradient(90deg,var(--ink) 50%,var(--line) 50%)}
+.rv-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3)}
+.rv{margin:0;display:flex;flex-direction:column;gap:12px;padding-top:var(--s2);border-top:1px solid var(--ink)}
+.rv blockquote{margin:0;font-size:1rem;line-height:1.6}
+.rv blockquote::before{content:"“";display:block;font-size:2.6rem;line-height:.6;font-weight:800;color:var(--brand-deep);margin:10px 0 2px}
+.rv figcaption{margin-top:auto;font-size:var(--step--1)}
+.rv figcaption b{display:block}
+.rv figcaption span{color:var(--ink-muted)}
+.rv-more{display:inline-block;margin-top:var(--s3);font-weight:700}
+@media (max-width:900px){.rv-list{grid-template-columns:1fr}}
