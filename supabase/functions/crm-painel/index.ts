@@ -18,7 +18,7 @@ import postgres from "npm:postgres@3.4.5";
 const dbUrl = Deno.env.get("SUPABASE_DB_URL");
 if (!dbUrl) throw new Error("SUPABASE_DB_URL is not available");
 
-const VERSION = 1;
+const VERSION = 2;
 const SITE = "https://brightscalegroup.com";
 const LOGIN_MINUTES = 20;
 const SESSION_DAYS = 30;
@@ -134,7 +134,7 @@ function msgVersion(body: string) {
 }
 
 async function buildData(sql: any) {
-  const [hd, sms, calls, web, wa, appts, bookings, outcomes, changelog, callbacks] = await Promise.all([
+  const [hd, sms, calls, web, wa, appts, bookings, outcomes, changelog, callbacks, testPhones] = await Promise.all([
     sql`select id, customer_name, first_name, phone, job, city, zip, status, channel_choice, first_sms_at, reminder_sent_at, created_at from private.hd_leads`,
     sql`select direction, phone, body, created_at from private.sms_messages order by created_at`,
     sql`select id, customer_name, coalesce(nullif(callback_phone,''), caller_phone) phone, service, city, lead_type, urgent, language,
@@ -147,12 +147,15 @@ async function buildData(sql: any) {
     sql`select source, lead_id, outcome, job_value, lost_reason, notes, updated_by, updated_at from private.lead_outcomes`,
     sql`select id, happened_on, title, details, created_by from private.crm_changelog order by happened_on desc, created_at desc`,
     sql`select lead_id, status, created_at from private.callback_requests`,
+    sql`select phone10 from private.crm_test_phones`,
   ]);
+  // Paulo's own phones: everything from/to them is a test.
+  const testSet = new Set<string>(testPhones.map((r: any) => String(r.phone10)));
 
   const smsBy: Record<string, Msg[]> = {};
   for (const m of sms) {
     const k = p10(m.phone);
-    if (!k) continue;
+    if (!k || testSet.has(k)) continue;
     (smsBy[k] ||= []).push({ dir: String(m.direction), at: new Date(m.created_at).toISOString(), body: String(m.body || "") });
   }
   const bookBy: Record<string, any[]> = {};
@@ -179,7 +182,7 @@ async function buildData(sql: any) {
     const key = p10(base.phone);
     const bk = (key && bookBy[key]) || [];
     const o = outBy[`${source}:${id}`];
-    const autoTest = /^paulo\b/i.test(String(base.name || "").trim());
+    const autoTest = /^paulo\b/i.test(String(base.name || "").trim()) || (!!key && testSet.has(key));
     let outcome = o?.outcome || (autoTest ? "test" : "open");
     const booked = bk.length ? bk.sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)))[0] : null;
     const paid = bk.some((b) => b.paid);
@@ -213,7 +216,7 @@ async function buildData(sql: any) {
     const firstIn = contactedAt ? msgs.find((m) => m.dir === "in" && m.at > contactedAt) : msgs.find((m) => m.dir === "in");
     const version = firstOut ? msgVersion(firstOut.body) : null;
     const archived = h.status === "ignored_old";
-    const isTest = /^paulo\b/i.test(String(h.customer_name || "").trim());
+    const isTest = /^paulo\b/i.test(String(h.customer_name || "").trim()) || (!!key && testSet.has(key));
     if (version && !archived && !isTest) {
       versionStats[version] ||= { sent: 0, replied: 0 };
       versionStats[version].sent++;

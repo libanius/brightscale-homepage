@@ -53,3 +53,12 @@ insert into private.crm_users(email, name) values
   ('brightscalegroup@gmail.com','Paulo'),
   ('paulolibanionetousa@gmail.com','Paulo')
 on conflict do nothing;
+
+-- Phones whose leads/SMS are tests (excluded from all stats)
+create table if not exists private.crm_test_phones (
+  phone10 text primary key check (phone10 ~ '^\d{10}$'),
+  note text,
+  created_at timestamptz not null default now()
+);
+alter table private.crm_test_phones enable row level security;
+insert into private.crm_test_phones(phone10, note) values ('9545041068', 'Telefone do Paulo — testes') on conflict do nothing;
